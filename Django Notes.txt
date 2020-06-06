@@ -1,0 +1,116 @@
+Django Notes:
+
+====================================================================================
+
+
+While copying to a new project, make sure of the following:
+
+1. Copy apps as-is
+2. in settings.py:
+
+    2.1: add name of app
+    2.2: add this{
+
+        # Media files {These just include the photos for the movies}
+
+        MEDIA_URL = '/media/'
+        MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+    }
+
+3. Update urls.py
+
+    3.1 add this so that the images get displayed{
+
+        urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    }
+
+4. Make superusers
+5. Make db migrations
+
+
+
+====================================================================================
+
+Essential Commands:
+ - python3 manage.py runserver
+
+
+
+ -* django-admin startproject mysite
+ -* python manage.py startapp polls
+
+While doing migrations:
+
+    python3 manage.py makemigrations
+
+    python3 manage.py sqlmigrate blog 0001
+
+    python3 manage.py migrate
+
+
+ -* python manage.py createsuperuser
+
+ - while creating a new app, add it to settings.py INSTALLED_APPS.
+
+
+========================================================================
+
+Flow:
+
+mysite.urls.py -> go to app's url.py -> corresponding views function -> html stuff.
+
+
+========================================================================
+
+Jinja logic: {% ~insertLogic~ %}
+
+ * {% extends "movieBlog/header.html" %} will copy stuff from the path, idea is to have it in all pages
+
+ * {% include "movieBlog/includes/htmlSnippets.html" %} will do the same thing, but the idea is that you can use the stuff in select pages
+
+ * do not forget to add "{% load static %}" in header's <head>
+
+
+========================================================================
+
+
+Folder uses:
+
+1. static: for bootstrap files
+2. templates: to store html files
+
+
+========================================================================
+
+
+
+Create a blog/admin.py file, and in it put:
+
+~~~~
+from django.contrib import admin
+from blog.models import Post
+
+admin.site.register(Post)
+~~~~
+
+
+========================================================================
+
+IDs:
+
+
+for mysite3:
+username: dipen
+pw: mailChimp1234
+
+
+
+
+
+
+
+
+
+

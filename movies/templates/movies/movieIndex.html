@@ -1,0 +1,50 @@
+{% extends "movies/header.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+	<div class="row justify-content-center">
+
+
+		{% for post in object_list %}
+		
+			<div class="card m-3 shadow-sm mb-3" style="width: 15.5rem;">
+
+				<div class="card-body text-center flex-column h-100">
+
+					<!-- <div style="height: 2rem;"> -->
+						<h5>
+							<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+						</h5>
+					<!-- </div> -->
+
+
+					<p class="card-text lead">{{post.releaseYear}}</p>
+
+					<a href="/movie/{{post.id}}">
+						<img src="{{post.moviePoster.url}}" class="img-fluid img-responsive" alt="{{post.moviePoster.url}}" height="210rem" width="210rem">
+					</a>
+					
+
+				</div>
+
+			</div>
+
+
+
+			{% empty %}
+			<li>No articles yet.</li>
+
+		
+
+		{% endfor %}
+
+
+	
+	</div>
+
+{% endblock %}	
+
+

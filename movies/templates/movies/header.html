@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<title>Escape Sequence</title>
+	<meta charset="utf-8" />
+	{% load static %}
+
+	<script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="{% static 'movies/js/showReviewScript.js' %}"></script>
+
+
+	<link rel="stylesheet" href="{% static 'movies/css/bootstrap.min.css' %}" type = "text/css"/>
+	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
+	
+	<style type="text/css">
+		html,
+		body {
+		  height:100%
+		}
+	</style>
+
+
+</head>
+
+
+<body class="body" style="background-color:#f6f6f6">
+	<div class="container-fluid">
+
+			<!-- Navbar code -->
+
+			<nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark">
+
+				<a class="navbar-brand" href="/"><h4>Escape Sequence</h4></a>
+
+				<button class="navbar-toggler" onclick="$('#navbarTogglerDemo02').toggleClass('collapse')" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+					<ul class="navbar-nav mr-auto mx-3">
+
+						<li class="nav-item active mx-3 text-md-center">
+							<a class="nav-link" href="/movies"> All Movies <span class="sr-only">(current)</span></a>
+						</li>
+
+
+						<li class="nav-item mx-3 text-md-center">
+							<a class="nav-link" href="/aboutus"> About Us </a>
+						</li>
+
+					</ul>
+
+
+					<form class="form-inline my-1 my-lg-0"  action="{% url 'movie-search' %}" method="GET" value="{{request.GET.q}}">
+						<input class="form-control mr-sm-2" type="search" placeholder="Search Movies" name="q" value="{{request.GET.q}}">
+						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+					</form>
+				</div>
+			
+			</nav>
+
+
+
+
+		<div class="container mt-4">
+			{% block content %}{% endblock %}	
+		</div>
+
+		
+
+	</div>
+
+
+
+	<!-- <footer>
+		<div class="container-fluid" style='margin-left:15px'>
+			<p><a href="#" target="blank">Contact</a> | <a href="#" target="blank">Instagram</a> | <a href="#" target="blank">Twitter</a> </p>
+		</div>
+	</footer>	
+	 -->
+
+</body>
+
+</html>
+
+
+
+
+
+

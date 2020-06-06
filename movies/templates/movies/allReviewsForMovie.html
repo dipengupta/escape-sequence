@@ -1,0 +1,395 @@
+{% extends "movies/header.html" %}
+
+{% block content %}
+
+
+
+	<!-- This is the container for movie name and personalized metrics -->
+
+
+
+	{% if movie_post != None %}
+		
+	<div class="row m-2 align-items-center">
+
+		<!-- This is the left part with movie poster -->
+		
+		<div class="col-sm-12 col-md-6 col-lg-6 text-center">
+			<img src="{{ movie_post.moviePoster.url }}" class="img-fluid img-responsive shadow-lg" alt="{{movie_post.moviePoster.url}}" height="375rem" width="375rem">
+		</div>
+
+
+		
+		<!-- This is the right part with the personalized metrics -->
+		<div class="col-sm-12 col-md-6 col-lg-6">
+
+
+			<!-- 1/3 This is the left part with movie title and summary -->
+			<div class="row mt-4">
+
+				<div class="container text-center">
+	
+					<h1>{{movie_post.movieTitle}}
+						<small class="text-muted"> ({{movie_post.releaseYear}})</small>
+					</h1>
+		
+				</div>
+				
+				<br><br><br>
+
+				<p>{{movie_post.movieSummary}}</p>
+			</div>	
+
+
+			<!-- 2/3 metrics part -->
+			<div class="mt-4">
+				
+				<!-- three metrics up -->
+				<div class="row m-2">
+
+					<div class="col text-left">
+
+						{% if like_ankur != None %}
+							<img src="/media/reviewerInfo/dipen/pos_dipen.jpg" class="img-fluid review_ankur_button" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
+						{% else %}
+							<img src="/media/reviewerInfo/dipen/neg_dipen.png" class="img-fluid review_ankur_button" type="button" data-toggle="collapse" alt="minus" height="55rem" width="55rem">
+						{% endif %}
+
+						<p>Ankur</p>
+
+					</div>
+
+
+
+					<div class="col text-center">
+
+						{% if like_dipen != None %}
+							<img src="/media/reviewerInfo/dipen/pos_dipen.jpg" class="img-fluid review_dipen_button" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
+						{% else %}
+							<img src="/media/reviewerInfo/dipen/neg_dipen.png" class="img-fluid review_dipen_button" type="button" data-toggle="collapse" alt="minus" height="55rem" width="55rem">
+						{% endif %}
+
+						<p>Dipen</p>
+
+					</div>
+
+
+					<div class="col text-right">
+
+						{% if like_ashesh != None %}
+							<img src="/media/reviewerInfo/dipen/pos_dipen.jpg" class="img-fluid review_ashesh_button" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
+						{% else %}
+							<img src="/media/reviewerInfo/dipen/neg_dipen.png" class="img-fluid review_ashesh_button" type="button" data-toggle="collapse" alt="minus" height="55rem" width="55rem">
+						{% endif %}
+
+						<p>Ashesh</p>
+				
+					</div>
+
+
+				</div>
+
+
+
+				<!-- two metrics down -->
+				<div class="row m-2">
+
+
+					<div class="col text-center ml-5">
+
+						{% if like_shantnu != None %}
+							<img src="/media/reviewerInfo/dipen/pos_dipen.jpg" class="img-fluid review_shantnu_button" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
+						{% else %}
+							<img src="/media/reviewerInfo/dipen/neg_dipen.png" class="img-fluid review_shantnu_button" type="button" data-toggle="collapse" alt="minus" height="55rem" width="55rem">
+						{% endif %}
+
+						<p>Shantnu</p>
+
+					</div>
+
+					<div class="col"></div>
+
+					<div class="col text-center mr-5">
+
+						{% if like_jayant != None %}
+							<img src="/media/reviewerInfo/dipen/pos_dipen.jpg" class="img-fluid review_jayant_button" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
+						{% else %}
+							<img src="/media/reviewerInfo/dipen/neg_dipen.png" class="img-fluid review_jayant_button" type="button" data-toggle="collapse" alt="minus" height="55rem" width="55rem">
+						{% endif %}
+
+						<p>Jayant</p>
+
+					</div>
+
+					
+
+				</div>
+
+			</div>
+
+
+
+			<!-- 3/3 final line -->
+			<div class="row justify-content-center mt-3">
+				<h5> {{ totalLikes }} out of 5 of us liked the movie!</h5>
+			</div>
+
+
+		</div>	
+
+	</div>
+
+		{% else %}
+			No doi
+
+		{% endif %}
+
+
+
+
+
+	<!-- This is the container for row of buttons -->
+
+
+	<div class="row align-items-center">
+
+		<div class="col text-center m-3 d-none d-md-block d-lg-block d-xl-block">
+			<button class="btn btn-outline-dark review_ankur_button" type="button" data-toggle="collapse">Ankur's Review</button>
+		</div>
+		
+		<div class="col text-center m-3 d-none d-md-block d-lg-block d-xl-block">
+			<button class="btn btn-outline-dark review_dipen_button" type="button" data-toggle="collapse">Dipen's Review</button>
+		</div>
+		
+		<div class="col text-center m-3 d-none d-md-block d-lg-block d-xl-block">
+			<button class="btn btn-outline-dark review_shantnu_button" type="button" data-toggle="collapse">Shantnu's Review</button>
+        </div>
+		
+		<div class="col text-center m-3 d-none d-md-block d-lg-block d-xl-block">
+			<button class="btn btn-outline-dark review_ashesh_button" type="button" data-toggle="collapse">Ashesh's Review</button>
+		</div>
+		
+		<div class="col text-center m-3 d-none d-md-block d-lg-block d-xl-block">
+			<button class="btn btn-outline-dark review_jayant_button" type="button" data-toggle="collapse">Jayant's Review</button>
+		</div>
+		
+
+	</div>
+
+
+
+	<!-- From here, it's basically all 5 reviews -->
+
+
+	<div class="container review_ankur">
+		<div class="card">
+
+			<div class="jumbotron">
+
+				{% if ankur_post != None %}
+
+				<div class="row">
+
+					<div class="col-9">
+						<h2 class="display-4">{{ankur_post.reviewTitle}}</h2>
+						<h6 class="lead">reviewed on {{ankur_post.reviewDate}}</h6>
+					</div>
+
+					<div class="col-3">
+						<img class="img-fluid img-thumbnail" src="/media/reviewerInfo/ankur/avatar_ankur.png" alt="avatar_ankur" height="175rem" width="175rem">
+					</div>
+					
+				</div>
+			
+				
+				<br>
+
+				{{ankur_post.reviewBody|safe|linebreaks}}
+				
+		
+				{% else %}
+					<h2>No review by Ankur</h2>
+		
+		
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+	<div class="container review_dipen">
+		<div class="card">
+
+			<div class="jumbotron">
+
+				{% if dipen_post != None %}
+
+				<div class="row">
+
+					<div class="col-9">
+						<h2 class="display-4">{{dipen_post.reviewTitle}}</h2>
+						<h6 class="lead">reviewed on {{dipen_post.reviewDate}}</h6>
+					</div>
+
+					<div class="col-3">
+						<img class="img-fluid img-thumbnail" src="/media/reviewerInfo/dipen/avatar_dipen.jpg" alt="avatar_dipen" height="175rem" width="175rem">
+					</div>
+					
+				</div>
+			
+				
+				<br>
+
+				{{dipen_post.reviewBody|safe|linebreaks}}
+				
+		
+				{% else %}
+					<h2>No review by Dipen</h2>
+		
+		
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+	<div class="container review_shantnu">
+		<div class="card">
+
+			<div class="jumbotron">
+
+				{% if shantnu_post != None %}
+
+				<div class="row">
+
+					<div class="col-9">
+						<h2 class="display-4">{{shantnu_post.reviewTitle}}</h2>
+						<h6 class="lead">reviewed on {{shantnu_post.reviewDate}}</h6>
+					</div>
+
+					<div class="col-3">
+						<img class="img-fluid img-thumbnail" src="/media/reviewerInfo/shantnu/avatar_shantnu.jpeg" alt="avatar_shantnu" height="175rem" width="175rem">
+					</div>
+					
+				</div>
+			
+				
+				<br>
+
+				{{shantnu_post.reviewBody|safe|linebreaks}}
+				
+		
+				{% else %}
+					<h2>No review by Shantnu</h2>
+		
+		
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+
+		
+
+
+	<div class="container review_ashesh">
+		<div class="card">
+
+			<div class="jumbotron">
+
+				{% if ashesh_post != None %}
+
+				<div class="row">
+
+					<div class="col-9">
+						<h2 class="display-4">{{ashesh_post.reviewTitle}}</h2>
+						<h6 class="lead">reviewed on {{ashesh_post.reviewDate}}</h6>
+					</div>
+
+					<div class="col-3">
+						<img class="img-fluid img-thumbnail" src="/media/reviewerInfo/ashesh/avatar_ashesh.jpg" alt="avatar_ashesh" height="175rem" width="175rem">
+					</div>
+					
+				</div>
+			
+				
+				<br>
+
+				{{ashesh_post.reviewBody|safe|linebreaks}}
+				
+		
+				{% else %}
+					<h2>No review by Ashesh</h2>
+		
+		
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<div class="container review_jayant">
+		<div class="card">
+
+			<div class="jumbotron">
+
+				{% if jayant_post != None %}
+
+				<div class="row">
+
+					<div class="col-9">
+						<h2 class="display-4">{{jayant_post.reviewTitle}}</h2>
+						<h6 class="lead">reviewed on {{jayant_post.reviewDate}}</h6>
+					</div>
+
+					<div class="col-3">
+						<img class="img-fluid img-thumbnail" src="/media/reviewerInfo/jayant/avatar_jayant.jpeg" alt="avatar_jayant" height="175rem" width="175rem">
+					</div>
+					
+				</div>
+			
+				
+				<br>
+
+				{{jayant_post.reviewBody|safe|linebreaks}}
+				
+		
+				{% else %}
+					<h2>No review by Jayant</h2>
+		
+		
+				{% endif %}
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="container review_placeholder">
+		<div class="card">
+
+			<div class="jumbotron">
+
+				<h6 class="lead">Click on names/metrics for their review</h6>
+				<h6 class="lead">the buttons are just there!</h6>
+
+				<br><br>
+
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+{% endblock %}	
