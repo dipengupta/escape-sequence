@@ -4,13 +4,14 @@
 {% block content %}
 
 
-    {% for post in object_list %}
 
-    <div class="row">
+    <div class="text-center">
+
+		<p class="lead"> Add awesome home page here </p>
 
 	<!-- This is the first 2/3rds which will contain the movie posters -->
     
-	<div class="col-8">
+	<!-- <div class="col-8">
 
         <div class="card m-2">
 
@@ -34,19 +35,19 @@
         </div>
 
 
-	</div>
+	</div> -->
 
 
 
 	<!-- This is the last 1/3rd which will contain the movie summary and ratings -->
 
 
-	<div class="col-4">
+	<!-- <div class="col-4">
 
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo{{post.id}}">
 
 			<p>{{ post.movieSummary }}</p>			
-<!-- 
+
 			<div class="container m-3">
 
 				<button class="btn btn-outline-dark review_ankur_button" type="button" data-toggle="collapse">A</button>
@@ -59,21 +60,14 @@
 			
 				<button class="btn btn-outline-dark review_jayant_button" type="button" data-toggle="collapse">J</button>
 
-			</div> -->
+			</div>
 
 		</div>
 
 		<p>This is a change specific to dev branch</p>
-	</div>
+	</div> -->
 
 
-
-			{% empty %}
-		<li>No articles yet.</li>
-
-	
-			
-    {% endfor %}
 </div>
 
 
