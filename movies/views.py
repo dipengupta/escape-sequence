@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
-from movies.models import AllMovies, Dipen, Ankur, Shantnu, Ashesh, Jayant
+from movies.models import AllMovies, Dipen, Ankur, Shantnu, Ashesh, Jayant, UpcomingReviews
 from django.db.models import Q
+
+
 
 '''
 
@@ -13,14 +15,6 @@ Returns: Dict of QuerySets with the relevent movie data
 '''
 def displayAllReviewsForMovie(request, primKey):
 
-    totalLikes = 0
-    like_ankur = None
-    like_dipen = None
-    like_ashesh = None
-    like_shantnu = None
-    like_jayant = None
-
-
     try:
         movie_post = AllMovies.objects.get(id=primKey)
     except:
@@ -29,47 +23,38 @@ def displayAllReviewsForMovie(request, primKey):
 
     try:
         ankur_post = Ankur.objects.get(post=primKey)
-        if ankur_post.verdict == 'thumbs_up':
-            totalLikes+=1
-            like_ankur = 1
     except:
         ankur_post = None
 
 
     try:
-        dipen_post = Dipen.objects.get(post=primKey)
-        if dipen_post.verdict == 'thumbs_up':
-            totalLikes+=1
-            like_dipen = 1        
+        dipen_post = Dipen.objects.get(post=primKey)     
     except:
         dipen_post = None
 
 
     try:
         shantnu_post = Shantnu.objects.get(post=primKey)
-        if shantnu_post.verdict == 'thumbs_up':
-            totalLikes+=1
-            like_shantnu = 1
     except:
         shantnu_post = None
 
 
     try:
-        ashesh_post = Ashesh.objects.get(post=primKey)
-        if ashesh_post.verdict == 'thumbs_up':
-            totalLikes+=1
-            like_ashesh = 1   
+        ashesh_post = Ashesh.objects.get(post=primKey) 
     except:
         ashesh_post = None
 
 
     try:
         jayant_post = Jayant.objects.get(post=primKey)
-        if jayant_post.verdict == 'thumbs_up':
-            totalLikes+=1
-            like_jayant = 1    
     except:
         jayant_post = None
+
+
+    try:
+        verdictDict = AllMovies.objects.get(id=primKey).getOverallRating()
+    except:
+        verdictDict = None
 
         
     finally:
@@ -80,13 +65,9 @@ def displayAllReviewsForMovie(request, primKey):
             'shantnu_post': shantnu_post, 
             'ashesh_post': ashesh_post, 
             'jayant_post': jayant_post,
-            'totalLikes': totalLikes,
-            'like_ankur' : like_ankur,
-            'like_dipen' : like_dipen,
-            'like_ashesh' : like_ashesh,
-            'like_shantnu' : like_shantnu,
-            'like_jayant' : like_jayant
         }
+
+        masterDict.update(verdictDict)
 
 
     return render(request, 'movies/allReviewsForMovie.html', masterDict)
@@ -95,7 +76,49 @@ def displayAllReviewsForMovie(request, primKey):
 
 
 
+'''
 
+This is the function to display the home screen
+
+Input: nothing
+Returns: Dict of QuerySets with the relevent movie data
+
+'''
+def displayHomePage(request):
+
+    try:
+        recently_reviewed = AllMovies.objects.all().order_by('-id')[:3]
+    except:
+        recently_reviewed = None
+
+
+    try:
+        upcoming_reviews = UpcomingReviews.objects.all().order_by('id')[:3]
+    except:
+        upcoming_reviews = None
+
+
+    finally:
+        masterDict = {
+            'recently_reviewed' : recently_reviewed,
+            'upcoming_reviews' : upcoming_reviews
+        }
+
+
+    return render(request, 'movies/home.html', masterDict)
+
+
+
+
+
+'''
+
+This is the function to display the about-us screen
+
+Input: nothing
+Returns: render of "About Us" page
+
+'''
 def displayAboutUsPage(request):
     return render(request, 'movies/aboutUs.html')
 
@@ -103,10 +126,19 @@ def displayAboutUsPage(request):
 
 
 
+'''
+This is the implementation for the search functionality.
 
+The search queries the "AllMovies" model for the following: {movieTitle, movieGenre, movieDirectors, movieActors}
+
+'''
 def searchMovies(request):
     if request.method == 'GET':
         query= request.GET.get('q')
+
+        #this little bit is to remove a trailing space from the query
+        if query[-1] == ' ':
+            query = query[:-1]
 
         submitbutton= request.GET.get('submit')
 
@@ -125,8 +157,6 @@ def searchMovies(request):
 
     else:
         return render(request, 'movies/searchResults.html')
-
-
 
 
 

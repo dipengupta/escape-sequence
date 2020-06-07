@@ -4,71 +4,94 @@
 {% block content %}
 
 
+<!-- This is the part for recent reviews -->
 
-    <div class="text-center">
+<div class="jumbotron">
 
-		<p class="lead"> Add awesome home page here </p>
+	<h2 class="display-4">Recently Reviewed</h2>
 
-	<!-- This is the first 2/3rds which will contain the movie posters -->
-    
-	<!-- <div class="col-8">
+	{% if recently_reviewed != None %}
 
-        <div class="card m-2">
+		<div class="row justify-content-center">
 
-            <div class="card-body text-center">
-
-
-                <button class="card-title navbar-toggler" onclick="$('#navbarTogglerDemo{{post.id}}').toggleClass('collapse')" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo{{post.id}}" aria-controls="navbarTogglerDemo{{post.id}}" aria-expanded="false" aria-label="Toggle navigation">
-                    {{post.movieTitle}}
-                </button>
-            
-                
-                <p class="card-text">{{post.releaseYear}}</p>
-
-                <a href="/movie/{{post.id}}">
-                    <img src="{{post.moviePoster.url}}" class="img-fluid" alt="{{post.moviePoster.url}}" height="200rem" width="200rem">
-                </a>
-               
-
-            </div>
-
-        </div>
-
-
-	</div> -->
-
-
-
-	<!-- This is the last 1/3rd which will contain the movie summary and ratings -->
-
-
-	<!-- <div class="col-4">
-
-		<div class="collapse navbar-collapse" id="navbarTogglerDemo{{post.id}}">
-
-			<p>{{ post.movieSummary }}</p>			
-
-			<div class="container m-3">
-
-				<button class="btn btn-outline-dark review_ankur_button" type="button" data-toggle="collapse">A</button>
-				
-				<button class="btn btn-outline-dark review_dipen_button" type="button" data-toggle="collapse">D</button>
+			{% for post in recently_reviewed %}
 			
-				<button class="btn btn-outline-dark review_shantnu_button" type="button" data-toggle="collapse">S</button>
-			
-				<button class="btn btn-outline-dark review_ashesh_button" type="button" data-toggle="collapse">H</button>
-			
-				<button class="btn btn-outline-dark review_jayant_button" type="button" data-toggle="collapse">J</button>
+				<div class="card m-3 shadow-sm mb-3" style="width: 18rem;">
 
-			</div>
+					<div class="card-body text-center flex-column h-100">
+
+						<h5>
+							<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+						</h5>
+
+						<p class="card-text lead">{{post.releaseYear}}</p>
+
+						<a href="/movie/{{post.id}}">
+							<img src="{{post.moviePoster.url}}" class="img-fluid img-responsive" alt="{{post.moviePoster.url}}" height="210rem" width="210rem">
+						</a>
+						
+					</div>
+
+				</div>
+		
+			{% endfor %}
+
 
 		</div>
 
-		<p>This is a change specific to dev branch</p>
-	</div> -->
 
+
+		{% else %}
+		<p class="lead">Oops! Something went wrong!</p>
+
+	{% endif %}
 
 </div>
+
+
+
+
+
+<!-- This is the part for upcoming reviews -->
+
+<div class="jumbotron">
+
+	<h2 class="display-4">Upcoming Reviews</h2>
+
+	{% if upcoming_reviews != None %}
+
+		<div class="row justify-content-center">
+
+			{% for post in upcoming_reviews %}
+			
+				<div class="card m-3 shadow-sm mb-3" style="width: 18rem;">
+
+					<div class="card-body text-center flex-column h-100">
+
+						<h5>{{post.movieTitle}}</h5>
+
+						<p class="card-text lead">{{post.releaseYear}}</p>
+
+						<img src="{{post.moviePoster.url}}" class="img-fluid img-responsive" alt="{{post.moviePoster.url}}" height="210rem" width="210rem">
+						
+					</div>
+
+				</div>
+		
+			{% endfor %}
+
+
+		</div>
+
+
+
+		{% else %}
+		<p class="lead">Oops! Something went wrong!</p>
+
+	{% endif %}
+
+</div>
+
 
 
 
