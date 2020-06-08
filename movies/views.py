@@ -47,6 +47,7 @@ def displayAllReviewsForMovie(request, primKey):
 
     try:
         jayant_post = Jayant.objects.get(post=primKey)
+
     except:
         jayant_post = None
 
@@ -162,78 +163,23 @@ def searchMovies(request):
 
 
 
-'''
+def moviesFilter(request):
 
-#Note: The below functions are essentially redundant, but can be used for a feature where 
-all movie reviews written by author is needed
+    listOfMoviesWithFiveLikes = []
 
-'''
-
-
-
-
-
-'''
-This function is to essentally pass the correct QueryObject of the movie to movieReview.html
-'''
-def displayAnkursReview(request, primKey):
     try:
-        ankur_post = Ankur.objects.get(post=primKey)
+        allMovies = AllMovies.objects.all()
+        for movie in allMovies:
+            if movie.getOverallRating().get('totalLikes') == 5:
+                listOfMoviesWithFiveLikes.append(movie)
+
     except:
-        ankur_post = None
+        allMovies = None
+
     finally:
-        author = "Ankur"
-    return render(request, 'movies/movieReview.html', {'final_post': ankur_post, 'author':author})
+        moviesWithFiveLikes = {
+            'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes
+        }   
 
-
-'''
-This function is to essentally pass the correct QueryObject of the movie to movieReview.html
-'''
-def displayDipensReview(request, primKey):
-    try:
-        dipen_post = Dipen.objects.get(post=primKey)
-    except:
-        dipen_post = None
-    finally:
-        author = "Dipen"
-    return render(request, 'movies/movieReview.html', {'final_post': dipen_post, 'author':author})
-
-
-'''
-This function is to essentally pass the correct QueryObject of the movie to movieReview.html
-'''
-def displayShantnusReview(request, primKey):
-    try:
-        shantnu_post = Shantnu.objects.get(post=primKey)
-    except:
-        shantnu_post = None
-    finally:
-        author = "Shantnu"
-    return render(request, 'movies/movieReview.html', {'final_post': shantnu_post, 'author':author})
-
-
-
-'''
-This function is to essentally pass the correct QueryObject of the movie to movieReview.html
-'''
-def displayAsheshsReview(request, primKey):
-    try:
-        ashesh_post = Ashesh.objects.get(post=primKey)
-    except:
-        ashesh_post = None
-    finally:
-        author = "Ashesh"
-    return render(request, 'movies/movieReview.html', {'final_post': ashesh_post, 'author':author})
-
-
-'''
-This function is to essentally pass the correct QueryObject of the movie to movieReview.html
-'''
-def displayJayantsReview(request, primKey):
-    try:
-        jayant_post = Jayant.objects.get(post=primKey)
-    except:
-        jayant_post = None
-    finally:
-        author = "Jayant"
-    return render(request, 'movies/movieReview.html', {'final_post': jayant_post, 'author':author})
+  
+    return render(request, 'movies/moviesFilter.html', moviesWithFiveLikes)
