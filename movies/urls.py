@@ -12,11 +12,7 @@ urlpatterns = [
 	re_path(r'movie/(?P<primKey>\d+)', views.displayAllReviewsForMovie, name='movie-page'),
 	re_path(r'aboutus/', views.displayAboutUsPage, name='about-us-page'),
 	re_path(r'search', views.searchMovies, name='movie-search'),
-	re_path(r'ankur/(?P<primKey>\d+)', views.displayAnkursReview, name='ankurs-review'),
-	re_path(r'dipen/(?P<primKey>\d+)', views.displayDipensReview, name='dipens-review'),
-	re_path(r'shantnu/(?P<primKey>\d+)', views.displayShantnusReview, name='shantnus-review'),
-	re_path(r'ashesh/(?P<primKey>\d+)', views.displayAsheshsReview, name='asheshs-review'),
-	re_path(r'jayant/(?P<primKey>\d+)', views.displayJayantsReview, name='jayants-review'),
+	re_path(r'test$', views.moviesFilter, name='movie-filter')
 	
 ]
 

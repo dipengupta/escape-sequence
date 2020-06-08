@@ -1,0 +1,55 @@
+{% extends "movies/header.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+	<!-- This is the part for "All 5 of us likes these" -->
+
+	<div class="jumbotron">
+
+		<h2 class="display-4">All five of us liked these</h2>
+
+		{% if listOfMoviesWithFiveLikes != None %}
+
+			<div class="row justify-content-center">
+
+				{% for post in listOfMoviesWithFiveLikes %}
+				
+					<div class="card m-3 shadow-sm mb-3" style="width: 18rem;">
+
+						<div class="card-body text-center flex-column h-100">
+
+							<h5>
+								<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+							</h5>
+
+							<p class="card-text lead">{{post.releaseYear}}</p>
+
+							<a href="/movie/{{post.id}}">
+								<img src="{{post.moviePoster.url}}" class="img-fluid img-responsive" alt="{{post.moviePoster.url}}" height="210rem" width="210rem">
+							</a>
+							
+						</div>
+
+					</div>
+			
+				{% endfor %}
+
+
+			</div>
+
+
+
+			{% else %}
+			<p class="lead">No Doi!</p>
+
+		{% endif %}
+
+	</div>
+
+
+{% endblock %}	
+
+
