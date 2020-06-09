@@ -4,95 +4,130 @@
 {% block content %}
 
 
-<!-- This is the part for recent reviews -->
+	<!-- This is the part for recent reviews -->
 
-<!-- <div class="jumbotron" style="background:grey !important"> -->
+	<div class="jumbotron">
 
-
-<div class="jumbotron bg-default">
-	<h2 class="display-5">Recently Reviewed</h2>
-
-	{% if recently_reviewed != None %}
-
-		<div class="row justify-content-center">
-
-			{% for post in recently_reviewed %}
-			
-				<div class="card m-3 shadow-sm mb-3" style="width: 18rem;">
-
-					<div class="card-body text-center flex-column h-100">
-
-						<h5>
-							<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
-						</h5>
-
-						<p class="card-text lead">{{post.releaseYear}}</p>
-
-						<a href="/movie/{{post.id}}">
-							<img src="{{post.moviePoster.url}}" class="img-fluid img-responsive" alt="{{post.moviePoster.url}}" height="210rem" width="210rem">
-						</a>
-						
-					</div>
-
-				</div>
-		
-			{% endfor %}
-
-
+		<!-- Title -->
+		<div class="row ml-3 mb-2">
+			<h2 class="display-5 font-weight-bold">Recently Reviewed</h2>
 		</div>
 
 
-
-		{% else %}
-		<p class="lead">Oops! Something went wrong!</p>
-
-	{% endif %}
-
-</div>
-
-
-
-
-
-<!-- This is the part for upcoming reviews -->
-
-<div class="jumbotron">
-
-	<h2 class="display-5">Upcoming Reviews</h2>
-
-	{% if upcoming_reviews != None %}
-
-		<div class="row justify-content-center">
-
-			{% for post in upcoming_reviews %}
-			
-				<div class="card m-3 shadow-sm mb-3" style="width: 18rem;">
-
-					<div class="card-body text-center flex-column h-100">
-
-						<h5>{{post.movieTitle}}</h5>
-
-						<p class="card-text lead">{{post.releaseYear}}</p>
-
-						<img src="{{post.moviePoster.url}}" class="img-fluid img-responsive" alt="{{post.moviePoster.url}}" height="210rem" width="210rem">
-						
-					</div>
-
-				</div>
-		
-			{% endfor %}
-
-
+		<!-- Yellow Line -->
+		<div class="row ml-1">
+			<div class="col-5 text-left"> 
+				<hr class="yellowSeparator">
+			</div>
+			<div class="col"></div>
+			<br><br>
 		</div>
 
 
+		<!-- Content -->
+		{% if recently_reviewed != None %}
 
-		{% else %}
-		<p class="lead">Oops! Something went wrong!</p>
+			<div class="row justify-content-center">
 
-	{% endif %}
+				{% for post in recently_reviewed %}
+				
+					<div class="card m-3 mb-3" style="width: 18rem;">
 
-</div>
+						<div class="card text-center flex-column h-100">
+							<a href="/movie/{{post.id}}">
+								<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+							</a>
+							
+							<div class="card-body">
+								<h4>
+									<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+								</h4>
+		
+								<p class="card-text lead">{{post.releaseYear}}</p>
+							</div>
+
+						</div>
+
+					</div>
+			
+				{% endfor %}
+
+
+			</div>
+
+
+
+			{% else %}
+			<p class="lead">Oops! Something went wrong!</p>
+
+		{% endif %}
+
+	</div>
+
+
+
+
+
+	<!-- This is the part for upcoming reviews -->
+
+	<div class="jumbotron">
+
+		<!-- Title -->
+		<div class="row ml-3 mb-2">
+			<h2 class="display-5 font-weight-bold">Upcoming Reviews</h2>
+		</div>
+
+
+		<!-- Yellow Line -->
+		<div class="row ml-1">
+			<div class="col-5 text-left"> 
+				<hr class="yellowSeparator">
+			</div>
+			<div class="col"></div>
+			<br><br>
+		</div>
+
+
+		<!-- Content -->
+		{% if upcoming_reviews != None %}
+
+			<div class="row justify-content-center">
+
+				{% for post in upcoming_reviews %}
+				
+					<div class="card m-3 mb-3" style="width: 18rem;">
+
+						<div class="card text-center flex-column h-100">
+							<a href="/movie/{{post.id}}">
+								<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+							</a>
+							
+							<div class="card-body">
+								<h4>
+									<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+								</h4>
+		
+								<p class="card-text lead">{{post.releaseYear}}</p>
+							</div>
+
+						</div>
+
+					</div>
+			
+				{% endfor %}
+
+
+			</div>
+
+
+
+			{% else %}
+			<p class="lead">Oops! Something went wrong!</p>
+
+		{% endif %}
+
+	</div>
+
 
 
 

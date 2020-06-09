@@ -6,15 +6,13 @@
 
 	<!-- This is the container for movie name and personalized metrics -->
 
-
-
 	{% if movie_post != None %}
 		
 	<div class="row m-2 align-items-center">
 
 		<!-- This is the left part with movie poster -->
 		
-		<div class="col-sm-12 col-md-6 col-lg-6 text-center">
+		<div class="col-sm-12 col-md-6 col-lg-6 text-center mt-4 mt-md-0">
 			<img src="{{ movie_post.moviePoster.url }}" class="img-fluid img-responsive shadow-lg" alt="{{movie_post.moviePoster.url}}" height="375rem" width="375rem">
 		</div>
 
@@ -29,7 +27,7 @@
 
 				<div class="container text-center">
 	
-					<h1>{{movie_post.movieTitle}}
+					<h1>{{movie_post.movieTitle}} <br>
 						<small class="text-muted"> ({{movie_post.releaseYear}})</small>
 					</h1>
 		
@@ -154,23 +152,23 @@
 	<div class="row align-items-center">
 
 		<div class="col text-center m-3 d-none d-md-block d-lg-block d-xl-block">
-			<button class="btn btn-outline-dark review_ankur_button" type="button" data-toggle="collapse">Ankur's Review</button>
+			<button class="btn btn-outline-light review_ankur_button" type="button" data-toggle="collapse">Ankur's Review</button>
 		</div>
 		
 		<div class="col text-center m-3 d-none d-md-block d-lg-block d-xl-block">
-			<button class="btn btn-outline-dark review_dipen_button" type="button" data-toggle="collapse">Dipen's Review</button>
+			<button class="btn btn-outline-light review_dipen_button" type="button" data-toggle="collapse">Dipen's Review</button>
 		</div>
 		
 		<div class="col text-center m-3 d-none d-md-block d-lg-block d-xl-block">
-			<button class="btn btn-outline-dark review_shantnu_button" type="button" data-toggle="collapse">Shantnu's Review</button>
+			<button class="btn btn-outline-light review_shantnu_button" type="button" data-toggle="collapse">Shantnu's Review</button>
         </div>
 		
 		<div class="col text-center m-3 d-none d-md-block d-lg-block d-xl-block">
-			<button class="btn btn-outline-dark review_ashesh_button" type="button" data-toggle="collapse">Ashesh's Review</button>
+			<button class="btn btn-outline-light review_ashesh_button" type="button" data-toggle="collapse">Ashesh's Review</button>
 		</div>
 		
 		<div class="col text-center m-3 d-none d-md-block d-lg-block d-xl-block">
-			<button class="btn btn-outline-dark review_jayant_button" type="button" data-toggle="collapse">Jayant's Review</button>
+			<button class="btn btn-outline-light review_jayant_button" type="button" data-toggle="collapse">Jayant's Review</button>
 		</div>
 		
 

@@ -5,44 +5,74 @@
 {% block content %}
 
 
-	<div class="row justify-content-center">
+	{% if object_list != None %}
 
+		<div class="row justify-content-center mt-3">
 
-		{% for post in object_list %}
-		
-			<div class="card m-3 shadow-sm mb-3" style="width: 15.8rem;">
+			{% for post in object_list %}
+			
 
-				<div class="card-body text-center flex-column h-100">
+				<!-- this div is for all devices except small screen ones -->
+				<div class="card m-3 mb-3 d-none d-md-block d-lg-block d-xl-block" style="width: 15.8rem;">
 
-					<h5>
-						<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
-					</h5>
+					<div class="card text-center flex-column h-100">
+						<a href="/movie/{{post.id}}">
+							<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+						</a>
+						
+						<div class="card-body">
+							<h4>
+								<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+							</h4>
+	
+							<p class="card-text lead">{{post.releaseYear}}</p>
+						</div>
 
-
-					<p class="card-text lead">{{post.releaseYear}}</p>
-
-
-					<a href="/movie/{{post.id}}">
-						<img src="{{post.moviePoster.url}}" class="img-fluid img-responsive" alt="{{post.moviePoster.url}}" height="210rem" width="210rem">
-					</a>
-					
+					</div>
 
 				</div>
 
-			</div>
 
 
+				<!-- this div is only for small screen and xs screens -->
+				<div class="card m-3 mb-3 d-xs-block d-sm-block d-md-none" style="width: 18rem;">
 
-			{% empty %}
-			<li>No doi</li>
-
-		
-
-		{% endfor %}
-
-
+					<div class="card text-center flex-column h-100">
+						<a href="/movie/{{post.id}}">
+							<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+						</a>
+						
+						<div class="card-body">
+							<h4>
+								<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+							</h4>
 	
-	</div>
+							<p class="card-text lead">{{post.releaseYear}}</p>
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+			{% endfor %}
+
+
+		</div>
+
+
+
+		{% else %}
+		<p class="lead">Oops! Something went wrong!</p>
+
+	{% endif %}
+	
+
+
+
+
+
 
 {% endblock %}	
 
