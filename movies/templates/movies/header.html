@@ -7,6 +7,8 @@
 	<meta charset="utf-8" />
 	{% load static %}
 
+
+	<!-- This is the JS file for jQuery and the review button logic -->
 	<script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="{% static 'movies/js/showReviewScript.js' %}"></script>
 
@@ -14,69 +16,63 @@
 	<link rel="stylesheet" href="{% static 'movies/css/bootstrap.min.css' %}" type = "text/css"/>
 	<!-- <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> -->
 
+	
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	
-	<style type="text/css">
-		html,
-		body {
-		  height:100%
-		  /* font-family: 'Poppins', sans-serif !important; */
-		}
-	</style>
+
+	<!-- this is main CSS file -->
+	<link rel="stylesheet" href="{% static 'movies/css/myCustomCSS.css' %}" type = "text/css"/>
+
 
 
 </head>
 
 
-<body class="body bg-light text-dark">
-	<!-- <div class="container-fluid"> -->
+<body class="body">
 
-			<!-- Navbar code -->
+	
+	<!-- Navbar code -->
 
-			<nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
 
-				<a class="navbar-brand" href="/"><h4>Escape Sequence</h4></a>
+		<a class="navbar-brand" href="/"><h4>Escape Sequence</h4></a>
 
-				<button class="navbar-toggler" onclick="$('#navbarTogglerDemo02').toggleClass('collapse')" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-			
-				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+		<button class="navbar-toggler" onclick="$('#navbarTogglerDemo02').toggleClass('collapse')" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
-					<ul class="navbar-nav mr-auto mx-3">
+			<ul class="navbar-nav mr-auto mx-3">
 
-						<li class="nav-item active mx-3 text-md-center">
-							<a class="nav-link" href="/movies"> Movies <span class="sr-only">(current)</span></a>
-						</li>
-
-
-						<li class="nav-item mx-3 text-md-center">
-							<a class="nav-link" href="/aboutus"> About Us </a>
-						</li>
-
-					</ul>
+				<li class="nav-item active mx-3 text-md-center">
+					<a class="nav-link" href="/movies"> Movies <span class="sr-only">(current)</span></a>
+				</li>
 
 
-					<form class="form-inline my-1 my-lg-0"  action="{% url 'movie-search' %}" method="GET" value="{{request.GET.q}}">
-						<input class="form-control mr-sm-2" type="search" placeholder="Search Movies" name="q" value="{{request.GET.q}}">
-						<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-					</form>
-				</div>
-			
-			</nav>
+				<li class="nav-item mx-3 text-md-center">
+					<a class="nav-link" href="/aboutus"> About Us </a>
+				</li>
 
+			</ul>
 
+			<form class="form-inline my-1 my-lg-0"  action="{% url 'movie-search' %}" method="GET" value="{{request.GET.q}}">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search Movies" name="q" value="{{request.GET.q}}">
+				<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+			</form>
 
-
-		<div class="container mt-4">
-			{% block content %}{% endblock %}	
 		</div>
+	
+	</nav>
+
+
+
+
+	<div class="container">
+		{% block content %}{% endblock %}	
+	</div>
 
 		
-
-	<!-- </div> -->
-
-
 
 	<!-- <footer>
 		<div class="container-fluid" style='margin-left:15px'>
@@ -85,6 +81,7 @@
 	</footer>	
 	 -->
 
+	 
 </body>
 
 </html>

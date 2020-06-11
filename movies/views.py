@@ -87,22 +87,40 @@ Returns: Dict of QuerySets with the relevent movie data
 '''
 def displayHomePage(request):
 
+
+    #This is for Recently Reviewed Movies
     try:
         recently_reviewed = AllMovies.objects.all().order_by('-id')[:3]
     except:
         recently_reviewed = None
 
 
+
+    #This is for Ucoming Movie Reviews 
     try:
         upcoming_reviews = UpcomingReviews.objects.all().order_by('id')[:3]
     except:
         upcoming_reviews = None
 
 
+
+    #This is for Movies that all 5 of us liked
+    try:
+        listOfMoviesWithFiveLikes = []
+        allMovies = AllMovies.objects.all()
+        for movie in allMovies:
+            if movie.getOverallRating().get('totalLikes') == 5:
+                listOfMoviesWithFiveLikes.append(movie)
+    except:
+        allMovies = None
+
+
+
     finally:
         masterDict = {
             'recently_reviewed' : recently_reviewed,
-            'upcoming_reviews' : upcoming_reviews
+            'upcoming_reviews' : upcoming_reviews,
+            'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes
         }
 
 
@@ -163,6 +181,9 @@ def searchMovies(request):
 
 
 
+'''
+This is a function that will pass data to /test/, it's just to test out stuff before adding it to main page
+'''
 def moviesFilter(request):
 
     listOfMoviesWithFiveLikes = []

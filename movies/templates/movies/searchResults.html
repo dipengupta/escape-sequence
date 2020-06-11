@@ -5,46 +5,47 @@
 {% block content %}
 
 
-	<div class="row justify-content-center">
-
+	<div class="row justify-content-center mt-3">
 
 		{% for post in results %}
 		
-			<div class="card m-3">
+			<div class="card m-3 mb-3" style="width: 18rem;">
 
-				<div class="card-body text-center">
-
-					<a class="card-title" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">
-						{{post.movieTitle}}
-					</a>
-
-	
-					<p class="card-text">{{post.releaseYear}}</p>
-
+				<div class="card text-center flex-column h-100">
 					<a href="/movie/{{post.id}}">
-						<img src="{{post.moviePoster.url}}" class="img-fluid img-responsive" alt="{{post.moviePoster.url}}" height="300rem" width="300rem">
+						<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
 					</a>
 					
+					<div class="card-body">
+						<h4>
+							<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+						</h4>
+
+						<p class="card-text lead">{{post.releaseYear}}</p>
+						</div>
 
 				</div>
 
 			</div>
+	
 
 
 
 			{% empty %}
 			<div>
-                <br><br>
-                <p class="lead">We haven't reviewed that one yet ;)</p>
-            </div>
+				<br><br>
+				<p class="lead">We haven't reviewed that one yet  ;)</p>
+			</div>
 
-		
+
 
 		{% endfor %}
 
 
-	
 	</div>
+
+
+	
 
 {% endblock %}	
 

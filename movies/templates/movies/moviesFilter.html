@@ -9,7 +9,19 @@
 
 	<div class="jumbotron">
 
-		<h2 class="display-4">All five of us liked these</h2>
+		<div class="row ml-3 mb-2">
+			<h2 class="display-5 font-weight-bold">All five of us liked these</h2>
+		</div>
+
+
+		<div class="row ml-1">
+			<div class="col-5 text-left"> 
+				<hr class="yellowSeparator">
+			</div>
+			<div class="col"></div>
+			<br><br>
+		</div>
+
 
 		{% if listOfMoviesWithFiveLikes != None %}
 
@@ -17,20 +29,21 @@
 
 				{% for post in listOfMoviesWithFiveLikes %}
 				
-					<div class="card m-3 shadow-sm mb-3" style="width: 18rem;">
+					<div class="card m-3 mb-3" style="width: 18rem;">
 
-						<div class="card-body text-center flex-column h-100">
-
-							<h5>
-								<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
-							</h5>
-
-							<p class="card-text lead">{{post.releaseYear}}</p>
-
+						<div class="card text-center flex-column h-100">
 							<a href="/movie/{{post.id}}">
-								<img src="{{post.moviePoster.url}}" class="img-fluid img-responsive" alt="{{post.moviePoster.url}}" height="210rem" width="210rem">
+								<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
 							</a>
 							
+							<div class="card-body">
+								<h4>
+									<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+								</h4>
+		
+								<p class="card-text lead">{{post.releaseYear}}</p>
+							</div>
+
 						</div>
 
 					</div>
@@ -43,7 +56,7 @@
 
 
 			{% else %}
-			<p class="lead">No Doi!</p>
+			<p class="lead">Oops! Something went wrong!</p>
 
 		{% endif %}
 

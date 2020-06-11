@@ -1,0 +1,46 @@
+html,
+
+body {
+    height:100%;
+    /* font-family: 'Poppins', sans-serif !important; */
+    background-color: #000000;
+    color:  #ffffff;
+    padding-top: 30px;
+}
+
+
+.jumbotron{
+    background: #000000 !important ;
+}
+
+
+.card-body{
+    background: #1a1a1a !important;
+    color: #7a7676 !important;
+}
+
+
+h5.movieNumbers{
+    color: #f2d517 !important ;
+}
+
+
+hr.yellowSeparator{
+    border-top: 0.5rem solid #f2d517;
+    width: 7rem;
+    margin: 0px;
+}
+
+
+a:link, a:visited, a:hover, a:active  {
+    color: white;
+    text-decoration: none;
+}
+
+
+.navbar{
+    background-color: #1a1a1a !important;
+}
+
+
+
