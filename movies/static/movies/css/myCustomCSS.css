@@ -43,4 +43,6 @@ a:link, a:visited, a:hover, a:active  {
 }
 
 
-
+img {
+    height: 100% !important;
+}
