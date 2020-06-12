@@ -162,16 +162,15 @@
 					<div class="card m-3 mb-3" style="width: 18rem;">
 
 						<div class="card text-center flex-column h-100">
-							<a href="/movie/{{post.id}}">
-								<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
-							</a>
-							
+
+							<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+
 							<div class="card-body">
-								<h4>
-									<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
-								</h4>
+
+								<h4>{{post.movieTitle}}</h4>
 		
 								<p class="card-text lead">{{post.releaseYear}}</p>
+
 							</div>
 
 						</div>

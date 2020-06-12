@@ -155,11 +155,22 @@ def searchMovies(request):
     if request.method == 'GET':
         query= request.GET.get('q')
 
+
+
+        #this little bit is to handle empty strings
+        if len(query) == 0:
+            print("Im here@@@@@")
+            return render(request, 'movies/searchResults.html')
+
+
+
         #this little bit is to remove a trailing space from the query
         if query[-1] == ' ':
             query = query[:-1]
 
         submitbutton= request.GET.get('submit')
+
+
 
         if query is not None:
             lookups= Q(movieTitle__icontains=query) | Q(movieGenre__icontains=query) | Q(movieDirectors__icontains=query) | Q(movieActors__icontains=query)  
