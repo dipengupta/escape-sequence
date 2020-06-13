@@ -101,9 +101,19 @@ admin.site.register(Post)
 IDs:
 
 
-for mysite3:
-username: dipen
-pw: mailChimp1234
+SU:
+    username: dipen
+    pw: mailChimp1234
+
+Other Users:
+
+    ankur   :   thisisaview
+    ashesh  :   from_outer_tunnel
+    shantnu :   remain_indoors
+    jayant  :   im_holding_position
+
+
+========================================================================
 
 
 
