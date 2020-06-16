@@ -43,6 +43,11 @@ a:link, a:visited, a:hover, a:active  {
 }
 
 
+.dropdown-menu{ 
+    background-color: #1a1a1a !important;
+}
+
 img {
     align-self: center !important;
 }
+

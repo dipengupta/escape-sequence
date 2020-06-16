@@ -2,146 +2,170 @@
 
 {% block content %}
 
-
-<div class="jumbotron">
-
-    <h2 class="display-4">Our Philosophy</h2>
-    <p class="lead">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
-    </p>
-    <p class="lead">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, deserunt cupiditate vel ipsa, in necessitatibus magnam ipsam minima hic suscipit debitis repellendus odio at aperiam quibusdam perspiciatis quod illo blanditiis.
-    </p>
-    
-</div>
+{% load static %}
 
 
-<div class="jumbotron">
+	<!-- This is the part for "Our Philosophy" -->
 
-    <h2 class="display-4">The Reviewers</h2>
+	<div class="jumbotron">
+
+		<!-- Title -->
+		<div class="row mx-3 mb-2">
+			<h2 class="display-4 font-weight-bold">Our Philosophy</h2>
+		</div>
 
 
-    <div class="container mt-4">
-        <div class="row">
+		<!-- Yellow Line -->
+		<div class="row ml-1">
+			<div class="col-5 text-left"> 
+				<hr class="yellowSeparator">
+			</div>
+			<div class="col"></div>
+			<br><br>
+		</div>
 
-            <div class="col">
-                <img class="img-fluid img-thumbnail" src="/media/reviewerInfo/ankur/avatar_ankur.png" alt="avatar_ankur" height="175rem" width="175rem">
+
+		<!-- Content -->
+        <p class="lead">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
+        </p>
+        <p class="lead">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia, deserunt cupiditate vel ipsa, in necessitatibus magnam ipsam minima hic suscipit debitis repellendus odio at aperiam quibusdam perspiciatis quod illo blanditiis.
+        </p>
+
+	</div>
+
+
+
+
+
+
+    <div class="jumbotron">
+
+        <h2 class="display-4">The Reviewers</h2>
+
+
+        <div class="container mt-4">
+            <div class="row">
+
+                <div class="col">
+                    <img class="img-fluid img-thumbnail" src="{% static 'reviewerInfo/ankur/avatar_ankur.png' %}" alt="avatar_ankur" height="175rem" width="175rem">
+                </div>
+        
+                <div class="col">
+                    <h2>Ankur</h2>
+                    <h3 class="font-weight-light font-italic">(The Vodka)</h3>
+                </div>
+        
             </div>
-    
-            <div class="col">
-                <h2>Ankur</h2>
-                <h3 class="font-weight-light font-italic">(The Vodka)</h3>
+        
+            <div class="row mt-4">
+                <p class="lead">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
+                </p>
             </div>
-    
         </div>
-    
-        <div class="row mt-4">
-            <p class="lead">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
-            </p>
+
+
+
+        <div class="container mt-4">
+            <div class="row">
+
+                <div class="col">
+                    <img class="img-fluid img-thumbnail" src="{% static 'reviewerInfo/dipen/avatar_dipen.jpg' %}" alt="avatar_dipen" height="175rem" width="175rem">
+                </div>
+        
+                <div class="col">
+                    <h2>Dipen</h2>
+                    <h3 class="font-weight-light font-italic">(The Tequila)</h3>
+                </div>
+        
+            </div>
+        
+            <div class="row mt-4">
+                <p class="lead">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
+                </p>
+            </div>
         </div>
+
+
+
+        <div class="container mt-4">
+            <div class="row">
+
+                <div class="col">
+                    <img class="img-fluid img-thumbnail" src="{% static 'reviewerInfo/ashesh/avatar_ashesh.jpg' %}" alt="avatar_ashesh" height="175rem" width="175rem">
+                </div>
+        
+                <div class="col">
+                    <h2>Ashesh</h2>
+                    <h3 class="font-weight-light font-italic">(The Rum)</h3>
+                </div>
+        
+            </div>
+        
+            <div class="row mt-4">
+                <p class="lead">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
+                </p>
+            </div>
+        </div>
+        
+
+
+
+        <div class="container mt-4">
+            <div class="row">
+
+                <div class="col">
+                    <img class="img-fluid img-thumbnail" src="{% static 'reviewerInfo/shantnu/avatar_shantnu.jpeg' %}" alt="avatar_shantnu" height="175rem" width="175rem">
+                </div>
+        
+                <div class="col">
+                    <h2>Shantnu</h2>
+                    <h3 class="font-weight-light font-italic">(The Gin)</h3>
+                </div>
+        
+            </div>
+        
+            <div class="row mt-4">
+                <p class="lead">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
+                </p>
+            </div>
+        </div>
+
+
+
+
+        <div class="container mt-4">
+            <div class="row">
+
+                <div class="col">
+                    <img class="img-fluid img-thumbnail" src="{% static 'reviewerInfo/jayant/avatar_jayant.jpeg' %}" alt="avatar_jayant" height="175rem" width="175rem">
+                </div>
+        
+                <div class="col">
+                    <h2>Jayant</h2>
+                    <h3 class="font-weight-light font-italic">(The Triple Sec)</h3>
+                </div>
+        
+            </div>
+        
+            <div class="row mt-4">
+                <p class="lead">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+
     </div>
-
-
-
-    <div class="container mt-4">
-        <div class="row">
-
-            <div class="col">
-                <img class="img-fluid img-thumbnail" src="/media/reviewerInfo/dipen/avatar_dipen.jpg" alt="avatar_dipen" height="175rem" width="175rem">
-            </div>
-    
-            <div class="col">
-                <h2>Dipen</h2>
-                <h3 class="font-weight-light font-italic">(The Tequila)</h3>
-            </div>
-    
-        </div>
-    
-        <div class="row mt-4">
-            <p class="lead">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
-            </p>
-        </div>
-    </div>
-
-
-
-    <div class="container mt-4">
-        <div class="row">
-
-            <div class="col">
-                <img class="img-fluid img-thumbnail" src="/media/reviewerInfo/ashesh/avatar_ashesh.jpg" alt="avatar_ashesh" height="175rem" width="175rem">
-            </div>
-    
-            <div class="col">
-                <h2>Ashesh</h2>
-                <h3 class="font-weight-light font-italic">(The Rum)</h3>
-            </div>
-    
-        </div>
-    
-        <div class="row mt-4">
-            <p class="lead">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
-            </p>
-        </div>
-    </div>
-    
-
-
-
-    <div class="container mt-4">
-        <div class="row">
-
-            <div class="col">
-                <img class="img-fluid img-thumbnail" src="/media/reviewerInfo/shantnu/avatar_shantnu.jpeg" alt="avatar_shantnu" height="175rem" width="175rem">
-            </div>
-    
-            <div class="col">
-                <h2>Shantnu</h2>
-                <h3 class="font-weight-light font-italic">(The Gin)</h3>
-            </div>
-    
-        </div>
-    
-        <div class="row mt-4">
-            <p class="lead">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
-            </p>
-        </div>
-    </div>
-
-
-
-
-    <div class="container mt-4">
-        <div class="row">
-
-            <div class="col">
-                <img class="img-fluid img-thumbnail" src="/media/reviewerInfo/jayant/avatar_jayant.jpeg" alt="avatar_jayant" height="175rem" width="175rem">
-            </div>
-    
-            <div class="col">
-                <h2>Jayant</h2>
-                <h3 class="font-weight-light font-italic">(The Triple Sec)</h3>
-            </div>
-    
-        </div>
-    
-        <div class="row mt-4">
-            <p class="lead">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa cupiditate nulla, laboriosam illum odio quae tenetur. Repudiandae earum vel ipsam nobis minima? Eum commodi illum dolorem excepturi fuga dolorum blanditiis?
-            </p>
-        </div>
-    </div>
-
-
-
-
-
-
-</div>
 
 
 

@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
     //user defined function to hide all reviews
     function onPageStartHideReviews() {
         $(".review_ankur").hide();

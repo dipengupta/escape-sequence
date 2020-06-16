@@ -32,11 +32,6 @@ class UpcomingReviews(models.Model):
 	movieTitle = models.CharField(max_length=300)
 	releaseYear = models.IntegerField()
 	moviePoster = models.ImageField(upload_to='movies/upcoming', default='movies/posters/defaultPoster.jpg')
-	movieSummary = models.TextField(blank=True)
-	movieGenre = models.TextField()
-	movieAgeRating = models.TextField(blank=True)
-	movieDirectors = models.TextField(blank=True)
-	movieActors = models.TextField(blank=True)
 
 	def __str__(self):
    		return self.movieTitle
@@ -51,13 +46,26 @@ class UpcomingReviews(models.Model):
 
 '''
 This is the main "table" where data for movies will be stored
+
+IMP: 
+	- here, "movieGenres" and "movieMoods" are essentially meant to act as tags that we can filter the movie out by later on.
+	- these can have multiple values, always put the new one on the next line, and use '-' instead of spaces
+
+	Eg:
+
+	movieGenres:
+	[
+		comedy
+		coming-of-age
+	]
 '''
 class AllMovies(models.Model):
 	movieTitle = models.CharField(max_length=300)
 	releaseYear = models.IntegerField()
 	moviePoster = models.ImageField(upload_to='movies/posters', default='movies/posters/defaultPoster.jpg')
 	movieSummary = models.TextField()
-	movieGenre = models.TextField()
+	movieGenres = models.TextField()
+	movieMoods = models.TextField(blank=True)
 	movieAgeRating = models.TextField(blank=True)
 	movieDirectors = models.TextField(blank=True)
 	movieActors = models.TextField(blank=True)
@@ -156,6 +164,16 @@ class AllMovies(models.Model):
 			}
 
 		return verdictDict
+
+
+	
+	def getMovieMoods(self):
+		return self.movieMoods
+
+
+
+	def getMovieGenres(self):
+		return self.movieGenres
 
 
 

@@ -68,13 +68,13 @@
 
 
 
-	<!-- This is the part for "All 5 of us likes these" -->
+	<!-- This is the part for "LiiT Movies" -->
 
 	<div class="jumbotron">
 
 		<!-- Title -->
 		<div class="row mx-3 mb-2">
-			<h2 class="display-5 font-weight-bold">All five of us liked these</h2>
+			<h2 class="display-5 font-weight-bold">LiiT Movies</h2>
 		</div>
 
 
@@ -153,6 +153,7 @@
 
 
 		<!-- Content -->
+
 		{% if upcoming_reviews != None %}
 
 			<div class="row justify-content-center">
@@ -162,15 +163,16 @@
 					<div class="card m-3 mb-3" style="width: 18rem;">
 
 						<div class="card text-center flex-column h-100">
-
-							<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
-
+							<!-- <a href="#"> -->
+								<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+							<!-- </a> -->
+							
 							<div class="card-body">
-
-								<h4>{{post.movieTitle}}</h4>
+								<h4>
+									<a class="card-title align-middle" data-toggle="collapse" href="#" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+								</h4>
 		
 								<p class="card-text lead">{{post.releaseYear}}</p>
-
 							</div>
 
 						</div>
@@ -183,11 +185,11 @@
 			</div>
 
 
-
 			{% else %}
 			<p class="lead">Oops! Something went wrong!</p>
 
 		{% endif %}
+
 
 	</div>
 

@@ -8,21 +8,31 @@
 	{% load static %}
 
 
-	<!-- This is the JS file for jQuery and the review button logic -->
+	<!-- This is the JS file for jQuery -->
 	<script language="JavaScript" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- This is the JS file for the nav dropdown to work  -->
+	<script src="{% static 'movies/js/bootstrap.bundle.js' %}"></script>
+
+
+	<!-- this is main bootstrap CSS file -->
+	<link rel="stylesheet" href="{% static 'movies/css/bootstrap.min.css' %}" type = "text/css"/>
+
+
+	<!-- This is the JS file for review button logic -->
 	<script src="{% static 'movies/js/showReviewScript.js' %}"></script>
 
 
-	<link rel="stylesheet" href="{% static 'movies/css/bootstrap.min.css' %}" type = "text/css"/>
+	<!-- this is my custom CSS file -->
+	<link rel="stylesheet" href="{% static 'movies/css/myCustomCSS.css' %}" type = "text/css"/>
+
+
+	
 	<!-- <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> -->
 
 	
 	<meta name="viewport" content = "width=device-width, initial-scale=1.0">
 	
-
-	<!-- this is main CSS file -->
-	<link rel="stylesheet" href="{% static 'movies/css/myCustomCSS.css' %}" type = "text/css"/>
-
 
 
 </head>
@@ -35,27 +45,78 @@
 
 	<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
 
+
+		<!-- Escape Sequence Logo -->
 		<a class="navbar-brand" href="/"><h4>Escape Sequence</h4></a>
 
+
+		<!-- Toggler icon for small screens -->
 		<button class="navbar-toggler" onclick="$('#navbarTogglerDemo02').toggleClass('collapse')" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 	
+
+
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
 			<ul class="navbar-nav mr-auto mx-3">
 
+				<!-- Link to home/feed page -->
 				<li class="nav-item active mx-3 text-md-center">
-					<a class="nav-link" href="/movies"> Movies <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="/home">Home<span class="sr-only">(current)</span></a>
 				</li>
 
 
+				<!-- Link to movies page -->
+				<!-- <li class="nav-item active mx-3 text-md-center">
+					<a class="nav-link" href="/movies">Movies<span class="sr-only">(current)</span></a>
+				</li> -->
+
+				<li class="nav-item dropdown">
+
+					<a class="nav-link dropdown-toggle active mx-3 text-md-center"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies</a>
+
+					<div class="dropdown-menu bg-dark text-md-center" style="background-color:#1a1a1a!important;" aria-labelledby="navbarDropdown">
+
+						<a class="dropdown-item" href="/movies">All Movies</a>
+						<a class="dropdown-item" href="/movies/genres">Movies by Genre</a>
+						<a class="dropdown-item" href="/movies/moods">Movies by Moods</a>
+						<a class="dropdown-item" href="/movies/ratings">Movies by Ratings</a>
+
+					</div>
+
+				</li>
+
+
+				
+				<!-- Editors list dropdown -->
+				<li class="nav-item dropdown">
+
+					<a class="nav-link dropdown-toggle active mx-3 text-md-center"  href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Editors Lists</a>
+
+					<div class="dropdown-menu bg-dark text-md-center" style="background-color:#1a1a1a!important;" aria-labelledby="navbarDropdown2">
+
+						<a class="dropdown-item" href="/ankur">Ankur</a>
+						<a class="dropdown-item" href="/dipen">Dipen</a>
+						<a class="dropdown-item" href="/ashesh">Ashesh</a>
+						<a class="dropdown-item" href="/jayant">Jayant</a>
+						<a class="dropdown-item" href="/shantnu">Shantnu</a>
+						<!-- <div class="dropdown-divider"></div> -->
+
+					</div>
+
+				</li>
+
+
+				<!-- Link to About Us page -->
 				<li class="nav-item mx-3 text-md-center">
 					<a class="nav-link" href="/aboutus"> About Us </a>
 				</li>
 
 			</ul>
 
+
+			<!-- search box -->
 			<form class="form-inline my-1 my-lg-0"  action="{% url 'movie-search' %}" method="GET" value="{{request.GET.q}}">
 				<input class="form-control mr-sm-2" type="search" placeholder="Search Movies" name="q" value="{{request.GET.q}}">
 				<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
@@ -72,14 +133,12 @@
 		{% block content %}{% endblock %}	
 	</div>
 
-		
-
-	<!-- <footer>
-		<div class="container-fluid" style='margin-left:15px'>
-			<p><a href="#" target="blank">Contact</a> | <a href="#" target="blank">Instagram</a> | <a href="#" target="blank">Twitter</a> </p>
+	
+	<!-- <footer class="footer mt-auto py-3">
+		<div class="container">
+			<span class="text-muted">This is a view</span>
 		</div>
-	</footer>	
-	 -->
+	</footer> -->
 
 	 
 </body>
