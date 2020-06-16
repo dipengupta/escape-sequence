@@ -25,7 +25,7 @@ SECRET_KEY = '0clv-0i8^qszc&#6$yzie+=t7c$h*o&ken+7$r(ys*+wdlq9u+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dipengupta.pythonanywhere.com']
 
 
 # Application definition
@@ -119,6 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/dipengupta/es-test/static'
 
 # Media files {These just include the photos for the movies}
 
