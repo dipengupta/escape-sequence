@@ -12,7 +12,7 @@
 
 
 		<!-- This is the left part with movie poster -->		
-		<div class="col-sm-12 col-md-6 col-lg-6 text-center mt-4 mt-md-0">
+		<div class="col-sm-12 col-md-6 col-lg-6 text-center mt-4 mt-md-0 mt-lg-2">
 			<img src="{{ movie_post.moviePoster.url }}" class="img-fluid img-responsive shadow-lg" alt="{{movie_post.moviePoster.url}}" height="375rem" width="375rem">
 		</div>
 
@@ -40,6 +40,8 @@
 
 
 			<!-- 2/3 metrics part -->
+
+			<!-- note: style="-webkit-appearance: none;" is used so that button is not displayed in Safari -->
 			<div class="mt-4">
 				
 				<!-- three metrics up -->
@@ -48,9 +50,9 @@
 					<div class="col text-left">
 
 						{% if like_ankur != None %}
-							<img src="{% static 'reviewerInfo/dipen/pos_dipen.png' %}" class="review_ankur_button" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
+							<img src="{% static 'reviewerInfo/dipen/pos_dipen.png' %}" class="review_ankur_button" style="-webkit-appearance: none;" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
 						{% else %}
-							<img src="{% static 'reviewerInfo/dipen/neg_dipen.png' %}" class="review_ankur_button" type="button" data-toggle="collapse" alt="minus" height="50rem" width="50rem">
+							<img src="{% static 'reviewerInfo/dipen/neg_dipen.png' %}" class="review_ankur_button" style="-webkit-appearance: none;" type="button" data-toggle="collapse" alt="minus" height="50rem" width="50rem">
 						{% endif %}
 
 						<p>Ankur</p>
@@ -61,9 +63,9 @@
 					<div class="col text-center">
 
 						{% if like_dipen != None %}
-							<img src="{% static 'reviewerInfo/dipen/pos_dipen.png' %}" class="review_dipen_button" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
+							<img src="{% static 'reviewerInfo/dipen/pos_dipen.png' %}" class="review_dipen_button" style="-webkit-appearance: none;" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
 						{% else %}
-							<img src="{% static 'reviewerInfo/dipen/neg_dipen.png' %}" class="review_dipen_button" type="button" data-toggle="collapse" alt="minus" height="50rem" width="50rem">
+							<img src="{% static 'reviewerInfo/dipen/neg_dipen.png' %}" class="review_dipen_button" style="-webkit-appearance: none;" type="button" data-toggle="collapse" alt="minus" height="50rem" width="50rem">
 						{% endif %}
 
 						<p>Dipen</p>
@@ -74,9 +76,9 @@
 					<div class="col text-right">
 
 						{% if like_ashesh != None %}
-							<img src="{% static 'reviewerInfo/dipen/pos_dipen.png' %}" class="review_ashesh_button" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
+							<img src="{% static 'reviewerInfo/dipen/pos_dipen.png' %}" class="review_ashesh_button" style="-webkit-appearance: none;" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
 						{% else %}
-							<img src="{% static 'reviewerInfo/dipen/neg_dipen.png' %}" class="review_ashesh_button" type="button" data-toggle="collapse" alt="minus" height="50rem" width="50rem">
+							<img src="{% static 'reviewerInfo/dipen/neg_dipen.png' %}" class="review_ashesh_button" style="-webkit-appearance: none;" type="button" data-toggle="collapse" alt="minus" height="50rem" width="50rem">
 						{% endif %}
 
 						<p>Ashesh</p>
@@ -95,9 +97,9 @@
 					<div class="col text-center ml-5 mr-2">
 
 						{% if like_shantnu != None %}
-							<img src="{% static 'reviewerInfo/dipen/pos_dipen.png' %}" class="review_shantnu_button" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
+							<img src="{% static 'reviewerInfo/dipen/pos_dipen.png' %}" class="review_shantnu_button" style="-webkit-appearance: none;" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
 						{% else %}
-							<img src="{% static 'reviewerInfo/dipen/neg_dipen.png' %}" class="review_shantnu_button" type="button" data-toggle="collapse" alt="minus" height="50rem" width="50rem">
+							<img src="{% static 'reviewerInfo/dipen/neg_dipen.png' %}" class="review_shantnu_button" style="-webkit-appearance: none;" type="button" data-toggle="collapse" alt="minus" height="50rem" width="50rem">
 						{% endif %}
 
 						<p>Shantnu</p>
@@ -109,9 +111,9 @@
 					<div class="col text-center mr-5">
 
 						{% if like_jayant != None %}
-							<img src="{% static 'reviewerInfo/dipen/pos_dipen.png' %}" class="review_jayant_button" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
+							<img src="{% static 'reviewerInfo/dipen/pos_dipen.png' %}" class="review_jayant_button" style="-webkit-appearance: none;" type="button" data-toggle="collapse" alt="plus" height="55rem" width="55rem">
 						{% else %}
-							<img src="{% static 'reviewerInfo/dipen/neg_dipen.png' %}" class="review_jayant_button" type="button" data-toggle="collapse" alt="minus" height="50rem" width="50rem">
+							<img src="{% static 'reviewerInfo/dipen/neg_dipen.png' %}" class="review_jayant_button" style="-webkit-appearance: none;" type="button" data-toggle="collapse" alt="minus" height="50rem" width="50rem">
 						{% endif %}
 
 						<p>Jayant</p>

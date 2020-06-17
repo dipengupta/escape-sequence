@@ -25,7 +25,7 @@ SECRET_KEY = '0clv-0i8^qszc&#6$yzie+=t7c$h*o&ken+7$r(ys*+wdlq9u+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dipengupta.pythonanywhere.com']
+ALLOWED_HOSTS = ['dipengupta.pythonanywhere.com','127.0.0.1']
 
 
 # Application definition

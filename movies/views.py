@@ -163,7 +163,7 @@ def displayAboutUsPage(request):
 '''
 This is the implementation for the search functionality.
 
-The search queries the "AllMovies" model for the following: {movieTitle, movieGenre, movieDirectors, movieActors}
+The search queries the "AllMovies" model for the following: {movieTitle, movieGenres, movieMoods, movieDirectors, movieActors}
 
 '''
 def searchMovies(request):
@@ -188,7 +188,7 @@ def searchMovies(request):
 
 
         if query is not None:
-            lookups= Q(movieTitle__icontains=query) | Q(movieGenres__icontains=query) | Q(movieDirectors__icontains=query) | Q(movieActors__icontains=query)  
+            lookups= Q(movieTitle__icontains=query) | Q(movieGenres__icontains=query) | Q(movieMoods__icontains=query) | Q(movieDirectors__icontains=query) | Q(movieActors__icontains=query)  
 
             results= AllMovies.objects.filter(lookups).distinct()
 
