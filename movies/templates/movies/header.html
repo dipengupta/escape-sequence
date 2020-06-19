@@ -19,8 +19,14 @@
 	<link rel="stylesheet" href="{% static 'movies/css/bootstrap.min.css' %}" type = "text/css"/>
 
 
+
+	
 	<!-- This is the JS file for review button logic -->
 	<script src="{% static 'movies/js/showReviewScript.js' %}"></script>
+
+
+	<!-- This is the JS file for movie filter button logic -->
+	<script src="{% static 'movies/js/showMovieFilters.js' %}"></script>
 
 
 	<!-- this is my custom CSS file -->
@@ -68,27 +74,11 @@
 
 
 				<!-- Link to movies page -->
-				<!-- <li class="nav-item active mx-3 text-md-center">
+				<li class="nav-item active mx-3 text-md-center">
 					<a class="nav-link" href="/movies">Movies<span class="sr-only">(current)</span></a>
-				</li> -->
-
-				<li class="nav-item dropdown">
-
-					<a class="nav-link dropdown-toggle active mx-3 text-md-center"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Movies</a>
-
-					<div class="dropdown-menu bg-dark text-md-center" style="background-color:#1a1a1a!important;" aria-labelledby="navbarDropdown">
-
-						<a class="dropdown-item" href="/movies">All Movies</a>
-						<a class="dropdown-item" href="/movies/genres">Movies by Genre</a>
-						<a class="dropdown-item" href="/movies/moods">Movies by Moods</a>
-						<a class="dropdown-item" href="/movies/ratings">Movies by Ratings</a>
-
-					</div>
-
 				</li>
 
 
-				
 				<!-- Editors list dropdown -->
 				<li class="nav-item dropdown">
 
@@ -108,10 +98,11 @@
 				</li>
 
 
-				<!-- Link to About Us page -->
-				<li class="nav-item mx-3 text-md-center">
+				<!-- Link to About Us page (need to put this in footer)-->
+
+				<!-- <li class="nav-item mx-3 text-md-center">
 					<a class="nav-link" href="/aboutus"> About Us </a>
-				</li>
+				</li> -->
 
 			</ul>
 

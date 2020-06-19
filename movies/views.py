@@ -123,9 +123,13 @@ def displayHomePage(request):
     try:
         listOfMoviesWithFiveLikes = []
         allMovies = AllMovies.objects.all()
+
         for movie in allMovies:
             if movie.getOverallRating().get('totalLikes') == 5:
                 listOfMoviesWithFiveLikes.append(movie)
+
+        #this line is to take only the last 4 of those
+        listOfMoviesWithFiveLikes = listOfMoviesWithFiveLikes[:3]
     except:
         allMovies = None
 
@@ -263,21 +267,6 @@ def getMoviesWithThisMood(request, moodName):
    
     return listOfMoviesWithThisMood
 
-
-
-
-
-'''
-This is a function that will pass data to /test/, it's just to test out stuff before adding it to main page
-'''
-def moviesFilter(request):
-
-    masterDict = {
-        'listOfMoviesWithThisMood' : getMoviesWithThisMood(request,'scared-shitless'),
-        'listOfMoviesWithThisGenre' : getMoviesWithThisGenre(request,'mind-bending')
-    }   
-
-    return render(request, 'movies/moviesFilter.html', masterDict)
 
 
 
@@ -475,3 +464,53 @@ def displayPersonalPageShantnu(request):
 
   
     return render(request, 'movies/personalPages/personalPage_shantnu.html', moviesWithFiveLikes)
+
+
+
+
+
+
+'''
+This is a function that will pass data to /movies/
+'''
+def displayMoviesPage(request):
+
+    #This is for Recently Reviewed Movies
+    try:
+        all_movies = AllMovies.objects.all().order_by('-id')
+    except:
+        all_movies = None
+
+        
+    masterDict = {
+        'listOfMoviesWithThisMood' : getMoviesWithThisMood(request,'scared-shitless'),
+        'listOfMoviesWithThisGenre' : getMoviesWithThisGenre(request,'mind-bending'),
+        'all_movies' : all_movies
+    }   
+
+    return render(request, 'movies/movieIndex.html', masterDict)
+
+
+
+
+
+
+'''
+This is a function that will pass data to /test/, it's just to test out stuff before adding it to main page
+'''
+def moviesFilter(request):
+
+    #This is for Recently Reviewed Movies
+    try:
+        all_movies = AllMovies.objects.all().order_by('-id')
+    except:
+        all_movies = None
+
+        
+    masterDict = {
+        'listOfMoviesWithThisMood' : getMoviesWithThisMood(request,'scared-shitless'),
+        'listOfMoviesWithThisGenre' : getMoviesWithThisGenre(request,'mind-bending'),
+        'all_movies' : all_movies
+    }   
+
+    return render(request, 'movies/moviesFilter.html', masterDict)
