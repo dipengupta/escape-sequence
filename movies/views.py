@@ -475,17 +475,51 @@ This is a function that will pass data to /movies/
 '''
 def displayMoviesPage(request):
 
-    #This is for Recently Reviewed Movies
+    #This is for all Movies
     try:
         all_movies = AllMovies.objects.all().order_by('-id')
     except:
         all_movies = None
 
-        
+
+
+    #these are function calls to get LOMs by Mood
+    lomWithMoodScaredShitless = getMoviesWithThisMood(request,'scared-shitless')
+    lomWithMoodHighOnLife = getMoviesWithThisMood(request,'high-on-life')
+
+
+
+    #these are function calls to get LOMs by Genre
+    lomWithGenreMindBending = getMoviesWithThisGenre(request,'mind-bending')
+    lomWithGenreSuperhero = getMoviesWithThisGenre(request,'superhero')
+
+
+
+    #This is for Movies that all 5 of us liked
+    try:
+        listOfMoviesWithFiveLikes = []
+        allMovies = AllMovies.objects.all()
+
+        for movie in allMovies:
+            if movie.getOverallRating().get('totalLikes') == 5:
+                listOfMoviesWithFiveLikes.append(movie)
+
+        #this line is to take only the last 4 of those
+        listOfMoviesWithFiveLikes = listOfMoviesWithFiveLikes[:3]
+    except:
+        allMovies = None
+
+
+
     masterDict = {
-        'listOfMoviesWithThisMood' : getMoviesWithThisMood(request,'scared-shitless'),
-        'listOfMoviesWithThisGenre' : getMoviesWithThisGenre(request,'mind-bending'),
-        'all_movies' : all_movies
+
+        'all_movies' : all_movies,
+        'lomWithMoodScaredShitless' : lomWithMoodScaredShitless,
+        'lomWithMoodHighOnLife' : lomWithMoodHighOnLife,
+        'lomWithGenreMindBending' : lomWithGenreMindBending,
+        'lomWithGenreSuperhero' : lomWithGenreSuperhero,
+        'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes,
+        
     }   
 
     return render(request, 'movies/movieIndex.html', masterDict)

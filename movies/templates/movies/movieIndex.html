@@ -8,6 +8,7 @@
 
 	<!-- This is the container for row of buttons -->
 
+
 		<!-- this div is for all devices except small screen ones -->
 		<div class="row align-items-center my-4 d-none d-md-block d-lg-block d-xl-block">
 
@@ -32,7 +33,6 @@
 			</div>
 
 		</div>
-
 
 
 		<!-- this div is only for small screen and xs screens -->
@@ -63,12 +63,12 @@
 
 
 
-		
-
+	
 	<!-- From here, it's basically all the data -->
 
 
-	<div class="container all_movies">
+
+	<span class="all_movies">
 
 		<!-- All Movies -->
 		<div class="jumbotron">
@@ -129,12 +129,13 @@
 
 		</div>
 
-	</div>
+	</span>
 
 
 
 
-	<div class="container genres">
+	
+	<span class="genres">
 
 		<!-- Mind Bending -->
 		<div class="jumbotron">
@@ -156,11 +157,11 @@
 
 
 			<!-- Content -->
-			{% if listOfMoviesWithThisGenre != None %}
+			{% if lomWithGenreMindBending != None %}
 
 				<div class="row justify-content-center">
 
-					{% for post in listOfMoviesWithThisGenre %}
+					{% for post in lomWithGenreMindBending %}
 					
 						<div class="card m-3 mb-3" style="width: 20rem;">
 
@@ -195,12 +196,133 @@
 
 		</div>
 
-	</div>
+
+		<!-- Superhero -->
+		<div class="jumbotron">
+
+			<!-- Title -->
+			<div class="row mx-3 mb-2">
+				<h2 class="display-5 font-weight-bold">Superhero</h2>
+			</div>
+
+
+			<!-- Yellow Line -->
+			<div class="row ml-1">
+				<div class="col-5 text-left"> 
+					<hr class="yellowSeparator">
+				</div>
+				<div class="col"></div>
+				<br><br>
+			</div>
+
+
+			<!-- Content -->
+			{% if lomWithGenreSuperhero != None %}
+
+				<div class="row justify-content-center">
+
+					{% for post in lomWithGenreSuperhero %}
+					
+						<div class="card m-3 mb-3" style="width: 20rem;">
+
+							<div class="card text-center flex-column h-100">
+								<a href="/movie/{{post.id}}">
+									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+								</a>
+								
+								<div class="card-body">
+									<h4>
+										<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+									</h4>
+			
+									<p class="card-text lead">{{post.releaseYear}}</p>
+								</div>
+
+							</div>
+
+						</div>
+				
+					{% endfor %}
+
+
+				</div>
+
+
+
+				{% else %}
+				<p class="lead">Oops! Something went wrong!</p>
+
+			{% endif %}
+
+		</div>
+
+
+	</span>
 
 
 
 	
-	<div class="container moods">
+	<span class="moods">
+
+		<!-- "High on Life" -->
+		<div class="jumbotron">
+
+			<!-- Title -->
+			<div class="row mx-3 mb-2">
+				<h2 class="display-5 font-weight-bold">High on Life</h2>
+			</div>
+
+
+			<!-- Yellow Line -->
+			<div class="row ml-1">
+				<div class="col-5 text-left"> 
+					<hr class="yellowSeparator">
+				</div>
+				<div class="col"></div>
+				<br><br>
+			</div>
+
+
+			<!-- Content -->
+			{% if lomWithMoodHighOnLife != None %}
+
+				<div class="row justify-content-center">
+
+					{% for post in lomWithMoodHighOnLife %}
+					
+						<div class="card m-3 mb-3" style="width: 20rem;">
+
+							<div class="card text-center flex-column h-100">
+								<a href="/movie/{{post.id}}">
+									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+								</a>
+								
+								<div class="card-body">
+									<h4>
+										<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+									</h4>
+			
+									<p class="card-text lead">{{post.releaseYear}}</p>
+								</div>
+
+							</div>
+
+						</div>
+				
+					{% endfor %}
+
+
+				</div>
+
+
+
+				{% else %}
+				<p class="lead">Oops! Something went wrong!</p>
+
+			{% endif %}
+
+		</div>
+
 
 		<!-- "Scared Shitless" -->
 		<div class="jumbotron">
@@ -222,11 +344,11 @@
 
 
 			<!-- Content -->
-			{% if listOfMoviesWithThisMood != None %}
+			{% if lomWithMoodScaredShitless != None %}
 
 				<div class="row justify-content-center">
 
-					{% for post in listOfMoviesWithThisMood %}
+					{% for post in lomWithMoodScaredShitless %}
 					
 						<div class="card m-3 mb-3" style="width: 20rem;">
 
@@ -261,23 +383,78 @@
 
 		</div>
 
-
-	</div>
-
+	</span>
 
 
 
-	<div class="container ratings">
 
-		<p>Place stuff here</p>
+	<span class="ratings">
 
-	</div>
+		<!-- "All 5 of us liked these" -->
+		<div class="jumbotron">
+
+			<!-- Title -->
+			<div class="row mx-3 mb-2">
+				<h2 class="display-5 font-weight-bold">All 5 of us liked these</h2>
+			</div>
+
+
+			<!-- Yellow Line -->
+			<div class="row ml-1">
+				<div class="col-5 text-left"> 
+					<hr class="yellowSeparator">
+				</div>
+				<div class="col"></div>
+				<br><br>
+			</div>
+
+
+			<!-- Content -->
+			{% if listOfMoviesWithFiveLikes != None %}
+
+				<div class="row justify-content-center">
+
+					{% for post in listOfMoviesWithFiveLikes %}
+					
+						<div class="card m-3 mb-3" style="width: 20rem;">
+
+							<div class="card text-center flex-column h-100">
+								<a href="/movie/{{post.id}}">
+									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+								</a>
+								
+								<div class="card-body">
+									<h4>
+										<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
+									</h4>
+			
+									<p class="card-text lead">{{post.releaseYear}}</p>
+								</div>
+
+							</div>
+
+						</div>
+				
+					{% endfor %}
+
+
+				</div>
+
+
+
+				{% else %}
+				<p class="lead">Oops! Something went wrong!</p>
+
+			{% endif %}
+
+		</div>
+
+	</span>
+
 
 	
 
-
-
-	<div class="container placeholder">
+	<span class="placeholder">
 
 		<!-- All Movies -->
 		<div class="jumbotron">
@@ -338,7 +515,7 @@
 
 		</div>
 
-	</div>
+	</span>
 
 
 
