@@ -9,6 +9,7 @@ body {
 }
 
 
+
 .jumbotron{
     background: #000000 !important ;
 }
@@ -49,4 +50,13 @@ a:link, a:visited, a:hover, a:active  {
 
 img {
     align-self: center !important;
+}
+
+
+footer {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 13rem !important; 
 }

@@ -224,14 +224,13 @@ def getMoviesWithThisGenre(request, genreName):
     listOfMoviesWithThisGenre = []
 
     try:
-        allMovies = AllMovies.objects.all()
+        allMovies = AllMovies.objects.all().order_by('-id')
         for movie in allMovies:
 
             retreivedData = movie.getMovieGenres().splitlines()
 
             if genreName in retreivedData:
                 listOfMoviesWithThisGenre.append(movie)
-
 
     except:
         allMovies = None
@@ -253,14 +252,13 @@ def getMoviesWithThisMood(request, moodName):
     listOfMoviesWithThisMood = []
 
     try:
-        allMovies = AllMovies.objects.all()
+        allMovies = AllMovies.objects.all().order_by('-id')
         for movie in allMovies:
             
             retreivedData = movie.getMovieMoods().splitlines()
 
             if moodName in retreivedData:
                 listOfMoviesWithThisMood.append(movie)
-
 
     except:
         allMovies = None
@@ -334,24 +332,13 @@ This is the function to call Ankur's personal page. Customize it however
 '''
 def displayPersonalPageAnkur(request):
 
-    listOfMoviesWithFiveLikes = []
+    lomWithGenreComedy = getMoviesWithThisGenre(request,'comedy')
 
-    try:
-        allMovies = AllMovies.objects.all()
-        for movie in allMovies:
-            if movie.getOverallRating().get('totalLikes') == 5:
-                listOfMoviesWithFiveLikes.append(movie)
+    masterDict = {
+        'lomWithGenreComedy' : lomWithGenreComedy        
+    }   
 
-    except:
-        allMovies = None
-
-    finally:
-        moviesWithFiveLikes = {
-            'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes
-        }   
-
-  
-    return render(request, 'movies/personalPages/personalPage_ankur.html', moviesWithFiveLikes)
+    return render(request, 'movies/personalPages/personalPage_ankur.html', masterDict)
 
 
 
@@ -362,24 +349,13 @@ This is the function to call Dipen's personal page. Customize it however
 '''
 def displayPersonalPageDipen(request):
 
-    listOfMoviesWithFiveLikes = []
+    lomWithMoodHighOnLife = getMoviesWithThisMood(request,'high-on-life')
 
-    try:
-        allMovies = AllMovies.objects.all()
-        for movie in allMovies:
-            if movie.getOverallRating().get('totalLikes') == 5:
-                listOfMoviesWithFiveLikes.append(movie)
+    masterDict = {
+        'lomWithMoodHighOnLife' : lomWithMoodHighOnLife        
+    }   
 
-    except:
-        allMovies = None
-
-    finally:
-        moviesWithFiveLikes = {
-            'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes
-        }   
-
-  
-    return render(request, 'movies/personalPages/personalPage_dipen.html', moviesWithFiveLikes)
+    return render(request, 'movies/personalPages/personalPage_dipen.html', masterDict)
 
 
 
@@ -390,24 +366,13 @@ This is the function to call Jayant's personal page. Customize it however
 '''
 def displayPersonalPageJayant(request):
 
-    listOfMoviesWithFiveLikes = []
+    lomWithGenreAbsoluteClassics = getMoviesWithThisGenre(request,'absolute-classics')
 
-    try:
-        allMovies = AllMovies.objects.all()
-        for movie in allMovies:
-            if movie.getOverallRating().get('totalLikes') == 5:
-                listOfMoviesWithFiveLikes.append(movie)
+    masterDict = {
+        'lomWithGenreAbsoluteClassics' : lomWithGenreAbsoluteClassics        
+    }   
 
-    except:
-        allMovies = None
-
-    finally:
-        moviesWithFiveLikes = {
-            'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes
-        }   
-
-  
-    return render(request, 'movies/personalPages/personalPage_jayant.html', moviesWithFiveLikes)
+    return render(request, 'movies/personalPages/personalPage_jayant.html', masterDict)
 
 
 
@@ -418,24 +383,13 @@ This is the function to call Ashesh's personal page. Customize it however
 '''
 def displayPersonalPageAshesh(request):
 
-    listOfMoviesWithFiveLikes = []
+    lomWithMoodScaredShitless = getMoviesWithThisMood(request,'scared-shitless')
 
-    try:
-        allMovies = AllMovies.objects.all()
-        for movie in allMovies:
-            if movie.getOverallRating().get('totalLikes') == 5:
-                listOfMoviesWithFiveLikes.append(movie)
+    masterDict = {
+        'lomWithMoodScaredShitless' : lomWithMoodScaredShitless        
+    }   
 
-    except:
-        allMovies = None
-
-    finally:
-        moviesWithFiveLikes = {
-            'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes
-        }   
-
-  
-    return render(request, 'movies/personalPages/personalPage_ashesh.html', moviesWithFiveLikes)
+    return render(request, 'movies/personalPages/personalPage_ashesh.html', masterDict)
 
 
 
@@ -446,24 +400,13 @@ This is the function to call Shantnu's personal page. Customize it however
 '''
 def displayPersonalPageShantnu(request):
 
-    listOfMoviesWithFiveLikes = []
+    lomWithGenreDocumentary = getMoviesWithThisGenre(request,'documentary')
 
-    try:
-        allMovies = AllMovies.objects.all()
-        for movie in allMovies:
-            if movie.getOverallRating().get('totalLikes') == 5:
-                listOfMoviesWithFiveLikes.append(movie)
+    masterDict = {
+        'lomWithGenreDocumentary' : lomWithGenreDocumentary        
+    }   
 
-    except:
-        allMovies = None
-
-    finally:
-        moviesWithFiveLikes = {
-            'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes
-        }   
-
-  
-    return render(request, 'movies/personalPages/personalPage_shantnu.html', moviesWithFiveLikes)
+    return render(request, 'movies/personalPages/personalPage_shantnu.html', masterDict)
 
 
 
@@ -478,49 +421,64 @@ def displayMoviesPage(request):
     #This is for all Movies
     try:
         all_movies = AllMovies.objects.all().order_by('-id')
+            
+
+        #This is for Movies for the "ratings" tab
+        listOfMoviesWithFiveLikes = []
+        listOfMoviesWithThreeLikes = []
+
+        for movie in all_movies:
+            if movie.getOverallRating().get('totalLikes') == 5:
+                listOfMoviesWithFiveLikes.append(movie)
+            if movie.getOverallRating().get('totalLikes') == 3:
+                listOfMoviesWithThreeLikes.append(movie)
+
+
+
     except:
         all_movies = None
 
+    finally:
 
+        #this line is to take only the last 'n' of those
+        listOfMoviesWithFiveLikes = listOfMoviesWithFiveLikes[:3]
+        listOfMoviesWithThreeLikes = listOfMoviesWithThreeLikes[:5]
 
-    #these are function calls to get LOMs by Mood
-    lomWithMoodScaredShitless = getMoviesWithThisMood(request,'scared-shitless')
-    lomWithMoodHighOnLife = getMoviesWithThisMood(request,'high-on-life')
 
 
 
     #these are function calls to get LOMs by Genre
     lomWithGenreMindBending = getMoviesWithThisGenre(request,'mind-bending')
     lomWithGenreSuperhero = getMoviesWithThisGenre(request,'superhero')
+    lomWithGenreComedy = getMoviesWithThisGenre(request,'comedy')
+    lomWithGenreAbsoluteClassics = getMoviesWithThisGenre(request,'absolute-classics')
+    lomWithGenreDocumentary = getMoviesWithThisGenre(request,'documentary')
 
 
 
-    #This is for Movies that all 5 of us liked
-    try:
-        listOfMoviesWithFiveLikes = []
-        allMovies = AllMovies.objects.all()
-
-        for movie in allMovies:
-            if movie.getOverallRating().get('totalLikes') == 5:
-                listOfMoviesWithFiveLikes.append(movie)
-
-        #this line is to take only the last 4 of those
-        listOfMoviesWithFiveLikes = listOfMoviesWithFiveLikes[:3]
-    except:
-        allMovies = None
+    #these are function calls to get LOMs by Mood
+    lomWithMoodScaredShitless = getMoviesWithThisMood(request,'scared-shitless')
+    lomWithMoodHighOnLife = getMoviesWithThisMood(request,'high-on-life')
+    lomWithMoodEasyWatching = getMoviesWithThisMood(request,'easy-watching')
 
 
 
     masterDict = {
 
         'all_movies' : all_movies,
+        'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes,
+        'listOfMoviesWithThreeLikes' : listOfMoviesWithThreeLikes,
         'lomWithMoodScaredShitless' : lomWithMoodScaredShitless,
         'lomWithMoodHighOnLife' : lomWithMoodHighOnLife,
+        'lomWithMoodEasyWatching':lomWithMoodEasyWatching,
         'lomWithGenreMindBending' : lomWithGenreMindBending,
         'lomWithGenreSuperhero' : lomWithGenreSuperhero,
-        'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes,
-        
+        'lomWithGenreComedy' : lomWithGenreComedy,
+        'lomWithGenreAbsoluteClassics' : lomWithGenreAbsoluteClassics,
+        'lomWithGenreDocumentary' : lomWithGenreDocumentary,
+
     }   
+
 
     return render(request, 'movies/movieIndex.html', masterDict)
 
