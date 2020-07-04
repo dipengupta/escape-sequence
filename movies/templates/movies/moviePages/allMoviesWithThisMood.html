@@ -6,13 +6,12 @@
 
 
 
-	<!-- Mind Bending -->
 
 	<div class="jumbotron">
 
 		<!-- Title -->
 		<div class="row mx-3 mb-2">
-			<h2 class="display-5 font-weight-bold">Mind Bending</h2>
+			<h2 class="display-5 font-weight-bold">All "{{page_title}}" </h2>
 		</div>
 
 
@@ -27,13 +26,13 @@
 
 
 		<!-- Content -->
-		{% if listOfMoviesWithThisGenre != None %}
+		{% if all_movies_data != None %}
 
 			<div class="row justify-content-center">
 
-				{% for post in listOfMoviesWithThisGenre %}
+				{% for post in all_movies_data %}
 				
-					<div class="card m-3 mb-3" style="width: 18rem;">
+					<div class="card m-3 mb-3" style="width: 20rem;">
 
 						<div class="card text-center flex-column h-100">
 							<a href="/movie/{{post.id}}">

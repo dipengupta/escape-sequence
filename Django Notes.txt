@@ -116,8 +116,20 @@ Other Users:
 ========================================================================
 
 
+Movie Genres Index Dictionary:
+
+1. Mind Bending
+2. Documentaries
+3. Comic Book Superheroes
+4. Absolute Classics
+5. Qualifies as Comedy
 
 
+Movie Moods Index Dictionary:
+
+1. Easy Watching
+2. High on Life
+3. Scared Shitless
 
 
 

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from movies.models import AllMovies, Dipen, Ankur, Shantnu, Ashesh, Jayant, UpcomingReviews
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 
 
@@ -269,63 +270,6 @@ def getMoviesWithThisMood(request, moodName):
 
 
 
-'''
-This is to display "Movies with Genres" page, with the correct data
-'''
-def displayMoviePageWithGenres(request):
-
-    masterDict = {
-        'listOfMoviesWithThisGenre' : getMoviesWithThisGenre(request,'mind-bending')
-    }   
-
-    return render(request, 'movies/moviePages/moviesByGenres.html', masterDict)
-
-
-
-
-'''
-This is to display "Movies with Moods" page, with the correct data
-'''
-def displayMoviePageWithMoods(request):
-
-    masterDict = {
-        'listOfMoviesWithThisMood' : getMoviesWithThisMood(request,'scared-shitless')
-    }   
-
-    return render(request, 'movies/moviePages/moviesByMoods.html', masterDict)
-
-
-
-
-
-'''
-This is to display "Movies with Ratings" page, with the correct data
-'''
-def displayMoviePageWithRatings(request):
-
-    #This is for Movies that all 5 of us liked
-    try:
-        listOfMoviesWithFiveLikes = []
-        allMovies = AllMovies.objects.all()
-        for movie in allMovies:
-            if movie.getOverallRating().get('totalLikes') == 5:
-                listOfMoviesWithFiveLikes.append(movie)
-    except:
-        allMovies = None
-
-
-
-    finally:
-        masterDict = {
-            'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes
-        }
-
-
-    return render(request, 'movies/moviePages/moviesByRatings.html', masterDict)
-
-
-
-
 
 '''
 This is the function to call Ankur's personal page. Customize it however
@@ -448,18 +392,18 @@ def displayMoviesPage(request):
 
 
     #these are function calls to get LOMs by Genre
-    lomWithGenreMindBending = getMoviesWithThisGenre(request,'mind-bending')
-    lomWithGenreSuperhero = getMoviesWithThisGenre(request,'superhero')
-    lomWithGenreComedy = getMoviesWithThisGenre(request,'comedy')
-    lomWithGenreAbsoluteClassics = getMoviesWithThisGenre(request,'absolute-classics')
-    lomWithGenreDocumentary = getMoviesWithThisGenre(request,'documentary')
+    lomWithGenreMindBending = getMoviesWithThisGenre(request,'mind-bending')[:3]
+    lomWithGenreSuperhero = getMoviesWithThisGenre(request,'superhero')[:3]
+    lomWithGenreComedy = getMoviesWithThisGenre(request,'comedy')[:3]
+    lomWithGenreAbsoluteClassics = getMoviesWithThisGenre(request,'absolute-classics')[:3]
+    lomWithGenreDocumentary = getMoviesWithThisGenre(request,'documentary')[:3]
 
 
 
     #these are function calls to get LOMs by Mood
-    lomWithMoodScaredShitless = getMoviesWithThisMood(request,'scared-shitless')
-    lomWithMoodHighOnLife = getMoviesWithThisMood(request,'high-on-life')
-    lomWithMoodEasyWatching = getMoviesWithThisMood(request,'easy-watching')
+    lomWithMoodScaredShitless = getMoviesWithThisMood(request,'scared-shitless')[:3]
+    lomWithMoodHighOnLife = getMoviesWithThisMood(request,'high-on-life')[:3]
+    lomWithMoodEasyWatching = getMoviesWithThisMood(request,'easy-watching')[:3]
 
 
 
@@ -487,6 +431,140 @@ def displayMoviesPage(request):
 
 
 
+
+'''
+
+This is essentially the one-stop function to display all movies of the clicked genre
+
+Input: Primary key of the mood (from the URL, also refer Django-Notes for the complete dict)
+Returns: Dict of QuerySets with the relevent movie data, and title
+
+'''
+def displayAllMoviesWithThisGenre(request, primKey):
+
+    all_movies_data = None
+    page_title = "Genre"
+    
+    # 1. Mind Bending
+    if primKey == "1":
+        try:
+            all_movies_data = getMoviesWithThisGenre(request,'mind-bending')
+        except:
+            all_movies_data = None
+        finally:
+            page_title = "Mind Bending"
+
+    # 2. Documentaries
+    if primKey == "2":
+        try:
+            all_movies_data = getMoviesWithThisGenre(request,'documentary')
+        except:
+            all_movies_data = None
+        finally:
+            page_title = "Documentaries"
+
+    # 3. Comic Book Superheroes
+    if primKey == "3":
+        try:
+            all_movies_data = getMoviesWithThisGenre(request,'superhero')
+        except:
+            all_movies_data = None
+        finally:
+            page_title = "Comic Book Superheroes"
+
+    # 4. Absolute Classics
+    if primKey == "4":
+        try:
+            all_movies_data = getMoviesWithThisGenre(request,'absolute-classics')
+        except:
+            all_movies_data = None
+        finally:
+            page_title = "Absolute Classics"
+
+    # 5. Qualifies as Comedy
+    if primKey == "5":
+        try:
+            all_movies_data = getMoviesWithThisGenre(request,'comedy')
+        except:
+            all_movies_data = None
+        finally:
+            page_title = "Qualifies as Comedy"
+    
+
+
+    masterDict = {
+        'all_movies_data': all_movies_data, 
+        'page_title' : page_title
+    }
+
+
+    return render(request, 'movies/moviePages/allMoviesWithThisGenre.html', masterDict)
+
+
+
+
+
+
+
+
+
+'''
+
+This is essentially the one-stop function to display all movies of the clicked mood
+
+Input: Primary key of the mood (from the URL, also refer Django-Notes for the complete dict)
+Returns: Dict of QuerySets with the relevent movie data, and title
+
+'''
+def displayAllMoviesWithThisMood(request, primKey):
+
+    all_movies_data = None
+    page_title = "Mood"
+    
+    # 1. Easy Watching
+    if primKey == "1":
+        try:
+            all_movies_data = getMoviesWithThisMood(request,'easy-watching')
+        except:
+            all_movies_data = None
+        finally:
+            page_title = "Easy Watching"
+
+    # 2. High on Life
+    if primKey == "2":
+        try:
+            all_movies_data = getMoviesWithThisMood(request,'high-on-life')
+        except:
+            all_movies_data = None
+        finally:
+            page_title = "High on Life"
+
+    # 3. Scared Shitless
+    if primKey == "3":
+        try:
+            all_movies_data = getMoviesWithThisMood(request,'scared-shitless')
+        except:
+            all_movies_data = None
+        finally:
+            page_title = "Scared Shitless"
+
+
+    masterDict = {
+        'all_movies_data': all_movies_data, 
+        'page_title' : page_title
+    }
+
+
+    return render(request, 'movies/moviePages/allMoviesWithThisMood.html', masterDict)
+
+
+
+
+
+
+
+
+
 '''
 This is a function that will pass data to /test/, it's just to test out stuff before adding it to main page
 '''
@@ -498,11 +576,21 @@ def moviesFilter(request):
     except:
         all_movies = None
 
-        
+
+
+    paginator = Paginator(all_movies, 9) # Show 25 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    #return render(request, 'list.html', {'page_obj': page_obj})
+
+
     masterDict = {
         'listOfMoviesWithThisMood' : getMoviesWithThisMood(request,'scared-shitless'),
         'listOfMoviesWithThisGenre' : getMoviesWithThisGenre(request,'mind-bending'),
-        'all_movies' : all_movies
+        'all_movies' : all_movies,
+        'page_obj': page_obj
     }   
 
     return render(request, 'movies/moviesFilter.html', masterDict)

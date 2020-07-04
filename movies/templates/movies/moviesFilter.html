@@ -34,7 +34,6 @@
 		</div>
 
 
-
 		<!-- this div is only for small screen and xs screens -->
 		<div class="row align-items-center my-2 d-xs-block d-sm-block d-md-none">
 
@@ -63,9 +62,9 @@
 
 
 
-		
 
 	<!-- From here, it's basically all the data -->
+
 
 
 	<div class="container all_movies">
@@ -90,11 +89,11 @@
 
 
 			<!-- Content -->
-			{% if all_movies != None %}
+			{% if page_obj != None %}
 
 				<div class="row justify-content-center">
 
-					{% for post in all_movies %}
+					{% for post in page_obj %}
 					
 						<div class="card m-3 mb-3" style="width: 18rem;">
 
@@ -127,6 +126,112 @@
 
 			{% endif %}
 
+		</div>
+
+
+		<!-- pagination -->
+
+		<!-- this div is for all devices except small screen ones -->
+		<div class="text-center align-items-center mb-5 d-none d-md-none d-lg-block d-xl-block">
+
+			<div class="row">
+
+				<!-- Shortcut to first page and "Previous Page" -->
+				<div class="col-4">
+
+					<div class="row">
+						{% if page_obj.has_previous %}
+
+							<div class="col-2"></div>
+
+							<div class="col">
+								<a class="btn btn-outline-none" style="color: #f2d517;" href="?page=1">&laquo;</a>
+							</div>
+
+							<div class="col">
+								<a class="btn btn-outline-light" style="width: 10rem;" href="?page={{ page_obj.previous_page_number }}">Previous Page</a>
+							</div>
+						{% endif %}
+					</div>
+					
+				</div>
+
+		
+				<!-- Page x of y -->
+				<div class="col-4 text-center">
+					<p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+				</div>
+		
+
+				<!-- Shortcut to next page and "Last Page" -->
+				<div class="col-4">
+
+					<div class="row">
+						{% if page_obj.has_next %}
+							<div class="col">
+								<a class="btn btn-outline-light" style="width: 10rem;" href="?page={{ page_obj.next_page_number }}">Next Page</a>
+							</div>
+
+							<div class="col">
+								<a class="btn btn-outline-none" style="color: #f2d517;" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+							</div>
+
+							<div class="col-2"></div>
+						{% endif %}
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<!-- this div is only for small screen and xs screens -->
+		<div class="text-center align-items-center mb-3 d-xs-block d-sm-block d-md-block d-lg-none">
+			<div class="row">
+
+				<!-- Shortcut to first page and "Previous Page" -->
+				<div class="col-4">
+
+					<div class="row">
+						{% if page_obj.has_previous %}
+
+							<div class="col-2"></div>
+
+							<div class="col">
+								<a class="btn btn-outline-light" style="width: 5rem;" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+							</div>
+
+						{% endif %}
+					</div>
+					
+				</div>
+
+		
+				<!-- Page x of y -->
+				<div class="col-4 text-center">
+					<p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+				</div>
+		
+
+				<!-- Shortcut to next page and "Last Page" -->
+				<div class="col-4">
+
+					<div class="row">
+						{% if page_obj.has_next %}
+
+							<div class="col">
+								<a class="btn btn-outline-light" style="width: 5rem;" href="?page={{ page_obj.next_page_number }}">Next</a>
+							</div>
+
+							<div class="col-2"></div>
+						{% endif %}
+					</div>
+
+				</div>
+
+			</div>
 		</div>
 
 	</div>
@@ -136,64 +241,7 @@
 
 	<div class="container genres">
 
-		<!-- Mind Bending -->
-		<div class="jumbotron">
-
-			<!-- Title -->
-			<div class="row mx-3 mb-2">
-				<h2 class="display-5 font-weight-bold">Mind Bending</h2>
-			</div>
-
-
-			<!-- Yellow Line -->
-			<div class="row ml-1">
-				<div class="col-5 text-left"> 
-					<hr class="yellowSeparator">
-				</div>
-				<div class="col"></div>
-				<br><br>
-			</div>
-
-
-			<!-- Content -->
-			{% if listOfMoviesWithThisGenre != None %}
-
-				<div class="row justify-content-center">
-
-					{% for post in listOfMoviesWithThisGenre %}
-					
-						<div class="card m-3 mb-3" style="width: 18rem;">
-
-							<div class="card text-center flex-column h-100">
-								<a href="/movie/{{post.id}}">
-									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
-								</a>
-								
-								<div class="card-body">
-									<h4>
-										<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
-									</h4>
-			
-									<p class="card-text lead">{{post.releaseYear}}</p>
-								</div>
-
-							</div>
-
-						</div>
-				
-					{% endfor %}
-
-
-				</div>
-
-
-
-				{% else %}
-				<p class="lead">Oops! Something went wrong!</p>
-
-			{% endif %}
-
-		</div>
+		<p>Place stuff here</p>
 
 	</div>
 
@@ -202,64 +250,7 @@
 	
 	<div class="container moods">
 
-		<!-- "Scared Shitless" -->
-		<div class="jumbotron">
-
-			<!-- Title -->
-			<div class="row mx-3 mb-2">
-				<h2 class="display-5 font-weight-bold">Scared Shitless</h2>
-			</div>
-
-
-			<!-- Yellow Line -->
-			<div class="row ml-1">
-				<div class="col-5 text-left"> 
-					<hr class="yellowSeparator">
-				</div>
-				<div class="col"></div>
-				<br><br>
-			</div>
-
-
-			<!-- Content -->
-			{% if listOfMoviesWithThisMood != None %}
-
-				<div class="row justify-content-center">
-
-					{% for post in listOfMoviesWithThisMood %}
-					
-						<div class="card m-3 mb-3" style="width: 18rem;">
-
-							<div class="card text-center flex-column h-100">
-								<a href="/movie/{{post.id}}">
-									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
-								</a>
-								
-								<div class="card-body">
-									<h4>
-										<a class="card-title align-middle" data-toggle="collapse" href="/movie/{{post.id}}" role="button" aria-expanded="false" aria-controls="collapseExample{{post.id}}"  aria-labelledby="heading{{post.id}}">{{post.movieTitle}}</a>
-									</h4>
-			
-									<p class="card-text lead">{{post.releaseYear}}</p>
-								</div>
-
-							</div>
-
-						</div>
-				
-					{% endfor %}
-
-
-				</div>
-
-
-
-				{% else %}
-				<p class="lead">Oops! Something went wrong!</p>
-
-			{% endif %}
-
-		</div>
+		<p>Place stuff here</p>
 
 
 	</div>
@@ -274,7 +265,6 @@
 	</div>
 
 	
-
 
 
 	<div class="container placeholder">
@@ -299,11 +289,11 @@
 
 
 			<!-- Content -->
-			{% if all_movies != None %}
+			{% if page_obj != None %}
 
 				<div class="row justify-content-center">
 
-					{% for post in all_movies %}
+					{% for post in page_obj %}
 					
 						<div class="card m-3 mb-3" style="width: 18rem;">
 
@@ -338,8 +328,115 @@
 
 		</div>
 
-	</div>
 
+
+		<!-- pagination -->
+
+		<!-- this div is for all devices except small screen ones -->
+		<div class="text-center align-items-center mb-5 d-none d-md-none d-lg-block d-xl-block">
+
+			<div class="row">
+
+				<!-- Shortcut to first page and "Previous Page" -->
+				<div class="col-4">
+
+					<div class="row">
+						{% if page_obj.has_previous %}
+
+							<div class="col-2"></div>
+
+							<div class="col">
+								<a class="btn btn-outline-none" style="color: #f2d517;" href="?page=1">&laquo;</a>
+							</div>
+
+							<div class="col">
+								<a class="btn btn-outline-light" style="width: 10rem;" href="?page={{ page_obj.previous_page_number }}">Previous Page</a>
+							</div>
+						{% endif %}
+					</div>
+					
+				</div>
+
+		
+				<!-- Page x of y -->
+				<div class="col-4 text-center">
+					<p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+				</div>
+		
+
+				<!-- Shortcut to next page and "Last Page" -->
+				<div class="col-4">
+
+					<div class="row">
+						{% if page_obj.has_next %}
+							<div class="col">
+								<a class="btn btn-outline-light" style="width: 10rem;" href="?page={{ page_obj.next_page_number }}">Next Page</a>
+							</div>
+
+							<div class="col">
+								<a class="btn btn-outline-none" style="color: #f2d517;" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+							</div>
+
+							<div class="col-2"></div>
+						{% endif %}
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<!-- this div is only for small screen and xs screens -->
+		<div class="text-center align-items-center mb-3 d-xs-block d-sm-block d-md-block d-lg-none">
+			<div class="row">
+
+				<!-- Shortcut to first page and "Previous Page" -->
+				<div class="col-4">
+
+					<div class="row">
+						{% if page_obj.has_previous %}
+
+							<div class="col-2"></div>
+
+							<div class="col">
+								<a class="btn btn-outline-light" style="width: 5rem;" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+							</div>
+
+						{% endif %}
+					</div>
+					
+				</div>
+
+		
+				<!-- Page x of y -->
+				<div class="col-4 text-center">
+					<p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+				</div>
+		
+
+				<!-- Shortcut to next page and "Last Page" -->
+				<div class="col-4">
+
+					<div class="row">
+						{% if page_obj.has_next %}
+
+							<div class="col">
+								<a class="btn btn-outline-light" style="width: 5rem;" href="?page={{ page_obj.next_page_number }}">Next</a>
+							</div>
+
+							<div class="col-2"></div>
+						{% endif %}
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
 
 
 
