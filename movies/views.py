@@ -113,7 +113,7 @@ def displayHomePage(request):
 
     #This is for Upcoming Movie Reviews 
     try:
-        upcoming_reviews = UpcomingReviews.objects.all().order_by('id')[:3]
+        upcoming_reviews = UpcomingReviews.objects.all().order_by('-id')[:3]
     except:
         upcoming_reviews = None
 
