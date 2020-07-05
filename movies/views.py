@@ -106,7 +106,7 @@ def displayHomePage(request):
 
     #This is for Recently Reviewed Movies
     try:
-        recently_reviewed = AllMovies.objects.all().order_by('-id')[:3]
+        recently_reviewed = AllMovies.objects.all().order_by('-id')[:6]
     except:
         recently_reviewed = None
 
@@ -130,7 +130,7 @@ def displayHomePage(request):
                 listOfMoviesWithFiveLikes.append(movie)
 
         #this line is to take only the last 4 of those
-        listOfMoviesWithFiveLikes = listOfMoviesWithFiveLikes[:3]
+        listOfMoviesWithFiveLikes = listOfMoviesWithFiveLikes[:6]
     except:
         allMovies = None
 
@@ -444,7 +444,7 @@ def displayMoviesPage(request):
 This is essentially the one-stop function to display all movies of the clicked genre
 
 Input: Primary key of the mood (from the URL, also refer Django-Notes for the complete dict)
-Returns: Dict of QuerySets with the relevent movie data, and title
+Returns: Dict of QuerySets with the relevent movie data, and title, with pagination
 
 '''
 def displayAllMoviesWithThisGenre(request, primKey):
@@ -498,9 +498,14 @@ def displayAllMoviesWithThisGenre(request, primKey):
             page_title = "Qualifies as Comedy"
     
 
+    paginator = Paginator(all_movies_data, 9) # Show 9 movies per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
 
     masterDict = {
-        'all_movies_data': all_movies_data, 
+        'page_obj': page_obj, 
         'page_title' : page_title
     }
 
@@ -520,7 +525,7 @@ def displayAllMoviesWithThisGenre(request, primKey):
 This is essentially the one-stop function to display all movies of the clicked mood
 
 Input: Primary key of the mood (from the URL, also refer Django-Notes for the complete dict)
-Returns: Dict of QuerySets with the relevent movie data, and title
+Returns: Dict of QuerySets with the relevent movie data, and title, with pagination
 
 '''
 def displayAllMoviesWithThisMood(request, primKey):
@@ -528,6 +533,7 @@ def displayAllMoviesWithThisMood(request, primKey):
     all_movies_data = None
     page_title = "Mood"
     
+
     # 1. Easy Watching
     if primKey == "1":
         try:
@@ -556,8 +562,15 @@ def displayAllMoviesWithThisMood(request, primKey):
             page_title = "Scared Shitless"
 
 
+
+
+    paginator = Paginator(all_movies_data, 9) # Show 9 movies per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
     masterDict = {
-        'all_movies_data': all_movies_data, 
+        'page_obj': page_obj, 
         'page_title' : page_title
     }
 
