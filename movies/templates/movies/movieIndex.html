@@ -8,7 +8,6 @@
 
 	<!-- This is the container for row of buttons -->
 
-
 		<!-- this div is for all devices except small screen ones -->
 		<div class="row align-items-center my-4 d-none d-md-block d-lg-block d-xl-block">
 
@@ -60,10 +59,10 @@
 
 		</div>
 
+	<!-- End of container for row of buttons -->
 
 
 
-	
 	<!-- From here, it's basically all the data -->
 
 
@@ -91,11 +90,11 @@
 
 
 			<!-- Content -->
-			{% if all_movies != None %}
+			{% if all_movies_page_obj != None %}
 
 				<div class="row justify-content-center">
 
-					{% for post in all_movies %}
+					{% for post in all_movies_page_obj %}
 					
 						<div class="card m-3 mb-3" style="width: 20rem;">
 
@@ -130,13 +129,154 @@
 
 		</div>
 
+
+		<!-- pagination -->
+
+			<!-- this div is for all devices except small screen ones -->
+			<div class="text-center align-items-center mb-5 d-none d-md-none d-lg-block d-xl-block">
+
+				<div class="row">
+
+					<!-- Shortcut to first page and "Previous Page" -->
+					<div class="col-4">
+
+						<div class="row">
+							{% if all_movies_page_obj.has_previous %}
+
+								<div class="col-2"></div>
+
+								<div class="col my-auto">
+									<a class="btn btn-outline-none" style="color: #f2d517; font-size: larger;" href="?page=1">&laquo;</a>
+								</div>
+
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 7rem; height: 4rem;" href="?page={{ all_movies_page_obj.previous_page_number }}">Previous Page</a>
+								</div>
+							{% endif %}
+						</div>
+						
+					</div>
+
+			
+					<!-- Page x of y -->
+					<div class="col-4 my-auto">
+						<p>Page {{ all_movies_page_obj.number }} of {{ all_movies_page_obj.paginator.num_pages }}</p>
+					</div>
+			
+
+					<!-- Shortcut to next page and "Last Page" -->
+					<div class="col-4">
+
+						<div class="row">
+							{% if all_movies_page_obj.has_next %}
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 7rem; height: 4rem;" href="?page={{ all_movies_page_obj.next_page_number }}">Next<br>Page</a>
+								</div>
+
+								<div class="col my-auto">
+									<a class="btn btn-outline-none" style="color: #f2d517; font-size: larger;" href="?page={{ all_movies_page_obj.paginator.num_pages }}">&raquo;</a>
+								</div>
+
+								<div class="col-2"></div>
+							{% endif %}
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<!-- this div is only for small screen and xs screens -->
+			<div class="text-center align-items-center mb-5 d-xs-block d-sm-block d-md-block d-lg-none">
+				<div class="row">
+
+					<!-- Shortcut to first page and "Previous Page" -->
+					<div class="col">
+
+						<div class="row">
+							{% if all_movies_page_obj.has_previous %}
+
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 6rem;" href="?page={{ all_movies_page_obj.previous_page_number }}">Previous</a>
+								</div>
+
+							{% endif %}
+						</div>
+						
+					</div>
+
+			
+					<!-- Page x of y -->
+					<div class="col-4 pt-1">
+						<p>Page {{ all_movies_page_obj.number }} of {{ all_movies_page_obj.paginator.num_pages }}</p>
+					</div>
+			
+
+					<!-- Shortcut to next page and "Last Page" -->
+					<div class="col">
+
+						<div class="row">
+							{% if all_movies_page_obj.has_next %}
+
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 6rem;" href="?page={{ all_movies_page_obj.next_page_number }}">Next</a>
+								</div>
+
+							{% endif %}
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		<!-- end of pagination -->
+
 	</span>
+
 
 
 
 
 	<!-- List of QuerySets for "Genres" -->
 	<span class="genres">
+
+		<br>
+
+		<!-- Text on top of the section -->
+
+			<!-- this div is for all devices except small screen ones -->
+			<div class="row text-center d-none d-md-block d-lg-block d-xl-block">
+				<div class="row">
+					<div class="col"></div>
+					<div class="col-6 border" style="border-color: #f2d517!important;">
+						<br>
+						<h5>These are movies by Genres</h5>
+						<p class="text-muted">Click on the genre name for the complete list of movies in it</p>	
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+
+
+			<!-- this div is only for small screen and xs screens -->
+			<div class="row text-center d-xs-block d-sm-block d-md-none">
+				<div class="row">
+					<div class="col"></div>
+					<div class="col-10 border" style="border-color: #f2d517!important;">
+						<br>
+						<h5>These are movies by Genres</h5>
+						<p class="text-muted">Click on the genre name for the complete list of movies in it</p>	
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+
+		<!-- End of Text on top of the section -->
+
+
 
 		<!-- Mind Bending -->
 		<div class="jumbotron">
@@ -454,9 +594,42 @@
 
 
 
-
 	<!-- List of QuerySets for "Moods" -->
 	<span class="moods">
+
+		<br>
+
+		<!-- Text on top of the section -->
+
+			<!-- this div is for all devices except small screen ones -->
+			<div class="row text-center d-none d-md-block d-lg-block d-xl-block">
+				<div class="row">
+					<div class="col"></div>
+					<div class="col-6 border" style="border-color: #f2d517!important;">
+						<br>
+						<h5>These are editor-curated movies by some common Moods</h5>
+						<p class="text-muted">Click on the mood title for the complete list of movies in it</p>	
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+
+
+			<!-- this div is only for small screen and xs screens -->
+			<div class="row text-center d-xs-block d-sm-block d-md-none">
+				<div class="row">
+					<div class="col"></div>
+					<div class="col-10 border" style="border-color: #f2d517!important;">
+						<br>
+						<h5>These are editor-curated movies by some common Moods</h5>
+						<p class="text-muted">Click on the mood title for the complete list of movies in it</p>	
+					</div>
+					<div class="col"></div>
+				</div>
+			</div>
+
+		<!-- End of Text on top of the section -->
+
 
 		<!-- "Easy Watching -->
 		<div class="jumbotron">
@@ -649,7 +822,6 @@
 
 
 
-
 	<!-- List of QuerySets for "Ratings" -->
 	<span class="ratings">
 
@@ -801,11 +973,11 @@
 
 
 			<!-- Content -->
-			{% if all_movies != None %}
+			{% if all_movies_page_obj != None %}
 
 				<div class="row justify-content-center">
 
-					{% for post in all_movies %}
+					{% for post in all_movies_page_obj %}
 					
 						<div class="card m-3 mb-3" style="width: 20rem;">
 
@@ -839,6 +1011,111 @@
 			{% endif %}
 
 		</div>
+
+
+		<!-- pagination -->
+
+			<!-- this div is for all devices except small screen ones -->
+			<div class="text-center align-items-center mb-5 d-none d-md-none d-lg-block d-xl-block">
+
+				<div class="row">
+
+					<!-- Shortcut to first page and "Previous Page" -->
+					<div class="col-4">
+
+						<div class="row">
+							{% if all_movies_page_obj.has_previous %}
+
+								<div class="col-2"></div>
+
+								<div class="col my-auto">
+									<a class="btn btn-outline-none" style="color: #f2d517; font-size: larger;" href="?page=1">&laquo;</a>
+								</div>
+
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 7rem; height: 4rem;" href="?page={{ all_movies_page_obj.previous_page_number }}">Previous Page</a>
+								</div>
+							{% endif %}
+						</div>
+						
+					</div>
+
+			
+					<!-- Page x of y -->
+					<div class="col-4 my-auto">
+						<p>Page {{ all_movies_page_obj.number }} of {{ all_movies_page_obj.paginator.num_pages }}</p>
+					</div>
+			
+
+					<!-- Shortcut to next page and "Last Page" -->
+					<div class="col-4">
+
+						<div class="row">
+							{% if all_movies_page_obj.has_next %}
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 7rem; height: 4rem;" href="?page={{ all_movies_page_obj.next_page_number }}">Next<br>Page</a>
+								</div>
+
+								<div class="col my-auto">
+									<a class="btn btn-outline-none" style="color: #f2d517; font-size: larger;" href="?page={{ all_movies_page_obj.paginator.num_pages }}">&raquo;</a>
+								</div>
+
+								<div class="col-2"></div>
+							{% endif %}
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<!-- this div is only for small screen and xs screens -->
+			<div class="text-center align-items-center mb-5 d-xs-block d-sm-block d-md-block d-lg-none">
+				<div class="row">
+
+					<!-- Shortcut to first page and "Previous Page" -->
+					<div class="col">
+
+						<div class="row">
+							{% if all_movies_page_obj.has_previous %}
+
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 6rem;" href="?page={{ all_movies_page_obj.previous_page_number }}">Previous</a>
+								</div>
+
+							{% endif %}
+						</div>
+						
+					</div>
+
+			
+					<!-- Page x of y -->
+					<div class="col-4 pt-1">
+						<p>Page {{ all_movies_page_obj.number }} of {{ all_movies_page_obj.paginator.num_pages }}</p>
+					</div>
+			
+
+					<!-- Shortcut to next page and "Last Page" -->
+					<div class="col">
+
+						<div class="row">
+							{% if all_movies_page_obj.has_next %}
+
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 6rem;" href="?page={{ all_movies_page_obj.next_page_number }}">Next</a>
+								</div>
+
+							{% endif %}
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		<!-- end of pagination -->
 
 	</span>
 

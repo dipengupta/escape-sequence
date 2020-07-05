@@ -332,108 +332,107 @@
 
 		<!-- pagination -->
 
-		<!-- this div is for all devices except small screen ones -->
-		<div class="text-center align-items-center mb-5 d-none d-md-none d-lg-block d-xl-block">
+			<!-- this div is for all devices except small screen ones -->
+			<div class="text-center align-items-center mb-5 d-none d-md-none d-lg-block d-xl-block">
 
-			<div class="row">
+				<div class="row">
 
-				<!-- Shortcut to first page and "Previous Page" -->
-				<div class="col-4">
+					<!-- Shortcut to first page and "Previous Page" -->
+					<div class="col-4">
 
-					<div class="row">
-						{% if page_obj.has_previous %}
+						<div class="row">
+							{% if page_obj.has_previous %}
 
-							<div class="col-2"></div>
+								<div class="col-2"></div>
 
-							<div class="col">
-								<a class="btn btn-outline-none" style="color: #f2d517;" href="?page=1">&laquo;</a>
-							</div>
+								<div class="col my-auto">
+									<a class="btn btn-outline-none" style="color: #f2d517; font-size: larger;" href="?page=1">&laquo;</a>
+								</div>
 
-							<div class="col">
-								<a class="btn btn-outline-light" style="width: 10rem;" href="?page={{ page_obj.previous_page_number }}">Previous Page</a>
-							</div>
-						{% endif %}
-					</div>
-					
-				</div>
-
-		
-				<!-- Page x of y -->
-				<div class="col-4 text-center">
-					<p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
-				</div>
-		
-
-				<!-- Shortcut to next page and "Last Page" -->
-				<div class="col-4">
-
-					<div class="row">
-						{% if page_obj.has_next %}
-							<div class="col">
-								<a class="btn btn-outline-light" style="width: 10rem;" href="?page={{ page_obj.next_page_number }}">Next Page</a>
-							</div>
-
-							<div class="col">
-								<a class="btn btn-outline-none" style="color: #f2d517;" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
-							</div>
-
-							<div class="col-2"></div>
-						{% endif %}
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 7rem; height: 4rem;" href="?page={{ page_obj.previous_page_number }}">Previous Page</a>
+								</div>
+							{% endif %}
+						</div>
+						
 					</div>
 
-				</div>
-
-			</div>
-
-		</div>
-
-
-		<!-- this div is only for small screen and xs screens -->
-		<div class="text-center align-items-center mb-3 d-xs-block d-sm-block d-md-block d-lg-none">
-			<div class="row">
-
-				<!-- Shortcut to first page and "Previous Page" -->
-				<div class="col-4">
-
-					<div class="row">
-						{% if page_obj.has_previous %}
-
-							<div class="col-2"></div>
-
-							<div class="col">
-								<a class="btn btn-outline-light" style="width: 5rem;" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-							</div>
-
-						{% endif %}
+			
+					<!-- Page x of y -->
+					<div class="col-4 my-auto">
+						<p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
 					</div>
-					
-				</div>
+			
 
-		
-				<!-- Page x of y -->
-				<div class="col-4 text-center">
-					<p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
-				</div>
-		
+					<!-- Shortcut to next page and "Last Page" -->
+					<div class="col-4">
 
-				<!-- Shortcut to next page and "Last Page" -->
-				<div class="col-4">
+						<div class="row">
+							{% if page_obj.has_next %}
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 7rem; height: 4rem;" href="?page={{ page_obj.next_page_number }}">Next<br>Page</a>
+								</div>
 
-					<div class="row">
-						{% if page_obj.has_next %}
+								<div class="col my-auto">
+									<a class="btn btn-outline-none" style="color: #f2d517; font-size: larger;" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+								</div>
 
-							<div class="col">
-								<a class="btn btn-outline-light" style="width: 5rem;" href="?page={{ page_obj.next_page_number }}">Next</a>
-							</div>
+								<div class="col-2"></div>
+							{% endif %}
+						</div>
 
-							<div class="col-2"></div>
-						{% endif %}
 					</div>
 
 				</div>
 
 			</div>
-		</div>
+
+
+			<!-- this div is only for small screen and xs screens -->
+			<div class="text-center align-items-center mb-5 d-xs-block d-sm-block d-md-block d-lg-none">
+				<div class="row">
+
+					<!-- Shortcut to first page and "Previous Page" -->
+					<div class="col">
+
+						<div class="row">
+							{% if page_obj.has_previous %}
+
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 6rem;" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+								</div>
+
+							{% endif %}
+						</div>
+						
+					</div>
+
+			
+					<!-- Page x of y -->
+					<div class="col-4 my-auto">
+						<p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+					</div>
+			
+
+					<!-- Shortcut to next page and "Last Page" -->
+					<div class="col">
+
+						<div class="row">
+							{% if page_obj.has_next %}
+
+								<div class="col">
+									<a class="btn btn-outline-light" style="width: 6rem;" href="?page={{ page_obj.next_page_number }}">Next</a>
+								</div>
+
+							{% endif %}
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+		<!-- end of pagination -->
 
 
 	</div>

@@ -384,6 +384,13 @@ def displayMoviesPage(request):
 
     finally:
 
+        #this is to enable pagination for "All Movies"
+        paginator = Paginator(all_movies, 9) # Show 9 movies per page.
+
+        page_number = request.GET.get('page')
+        all_movies_page_obj = paginator.get_page(page_number)
+
+
         #this line is to take only the last 'n' of those
         listOfMoviesWithFiveLikes = listOfMoviesWithFiveLikes[:3]
         listOfMoviesWithThreeLikes = listOfMoviesWithThreeLikes[:5]
@@ -409,7 +416,7 @@ def displayMoviesPage(request):
 
     masterDict = {
 
-        'all_movies' : all_movies,
+        'all_movies_page_obj' : all_movies_page_obj,
         'listOfMoviesWithFiveLikes' : listOfMoviesWithFiveLikes,
         'listOfMoviesWithThreeLikes' : listOfMoviesWithThreeLikes,
         'lomWithMoodScaredShitless' : lomWithMoodScaredShitless,
@@ -578,18 +585,15 @@ def moviesFilter(request):
 
 
 
-    paginator = Paginator(all_movies, 9) # Show 25 contacts per page.
+    paginator = Paginator(all_movies, 9) # Show 9 movies per page.
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-
-    #return render(request, 'list.html', {'page_obj': page_obj})
 
 
     masterDict = {
         'listOfMoviesWithThisMood' : getMoviesWithThisMood(request,'scared-shitless'),
         'listOfMoviesWithThisGenre' : getMoviesWithThisGenre(request,'mind-bending'),
-        'all_movies' : all_movies,
         'page_obj': page_obj
     }   
 
