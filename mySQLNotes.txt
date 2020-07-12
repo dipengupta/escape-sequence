@@ -1,0 +1,87 @@
+The idea to run Django with a MySQL Database server on local and prod. 
+This is way different than SQLite, as it is not simply just one file.
+
+Pros: WAYYYYYY more faster load time on actual prod website
+
+MySQL password for PythonAnywhere:
+    dipengupta
+    makeSiteFaster
+
+
+----------------------
+
+
+IMP: Use the command below in a bash window to take backup of the database from pythonanywhere
+
+mysqldump -u dipengupta -h dipengupta.mysql.pythonanywhere-services.com --set-gtid-purged=OFF 'dipengupta$es'  > db-backup.sql
+
+
+----------------------
+
+#settings.py
+
+DATABASES = {
+'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'dipengupta$es',
+    'USER': 'dipengupta',
+    'PASSWORD': 'makeSiteFaster',
+    'HOST': 'dipengupta.mysql.pythonanywhere-services.com',
+    }
+}
+
+==========================================================================================
+
+
+For PythonAnywhere:
+
+    pip install mysqlclient
+
+    1. python manage.py dumpdata --exclude contenttypes > datadump.json
+    2. Create password on database tab
+    3. Update settings.py
+    4. python manage.py migrate
+    5. python manage.py loaddata datadump.json
+
+
+    https://www.pythonanywhere.com/forums/topic/13850/
+    https://www.pythonanywhere.com/forums/topic/14492/
+    https://www.pythonanywhere.com/forums/topic/26745/
+
+
+==========================================================================================
+
+
+Steps to do this on local: (haven't got this to work yet :( )
+
+1. Install XAMPP:
+2. Configure PhpMyAdmin, referring this:
+
+https://dev.to/josiemhardy/how-to-fix-error-403-forbidden-access-new-xampp-security-concept-on-macbook-n2k
+
+3. Make database 'es'
+
+4. https://justinmi.me/blog/2017/04/28/migrating-sql-databases
+
+
+    python3 manage.py dumpdata --natural-foreign --natural-primary -e contenttypes -e auth.Permission --indent 4 > datadump.json
+
+5. 
+
+    https://django.programmingpedia.net/en/knowledge-base/46902357/error-loading-mysqldb-module--did-you-install-mysqlclient-or-mysql-python--
+
+
+        pip install pymysql
+        Then, edit the __init__.py file in your project origin dir(the same as settings.py)
+
+        add:
+
+        import pymysql
+
+        pymysql.install_as_MySQLdb()
+
+
+6.    https://stackoverflow.com/questions/55657752/django-installing-mysqlclient-error-mysqlclient-1-3-13-or-newer-is-required
+
+7. https://ruddra.com/install-mysqlclient-macos/
+
