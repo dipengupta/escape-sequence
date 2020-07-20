@@ -77,19 +77,6 @@ def displayAllReviewsForMovie(request, primKey):
 
 
 
-
-'''
-
-This is the function to display what the user will see when they first visit the site
-
-Input: nothing
-Returns: render of "Landing" page (essentially index page)
-
-'''
-def displayLandingPage(request):
-    return render(request, 'movies/landingPage.html')
-
-
     
 
 
@@ -170,6 +157,8 @@ This is the implementation for the search functionality.
 
 The search queries the "AllMovies" model for the following: {movieTitle, movieGenres, movieMoods, movieDirectors, movieActors}
 
+Different querySets are sent for each of the following, and the relavent ones are displayed on the search results
+
 '''
 def searchMovies(request):
     if request.method == 'GET':
@@ -183,8 +172,8 @@ def searchMovies(request):
 
 
 
-        #this little bit is to remove a trailing space from the query
-        if query[-1] == ' ':
+        #this little bit is to remove a trailing space and special characters from the query
+        if query[-1] in [' ','!','@','#','%','^','*','>','<','~']:
             query = query[:-1]
             
 
@@ -193,12 +182,29 @@ def searchMovies(request):
 
 
         if query is not None:
-            lookups= Q(movieTitle__icontains=query) | Q(movieGenres__icontains=query) | Q(movieMoods__icontains=query) | Q(movieDirectors__icontains=query) | Q(movieActors__icontains=query)  
+            # lookups= Q(movieTitle__icontains=query) | Q(movieGenres__icontains=query) | Q(movieMoods__icontains=query) | Q(movieDirectors__icontains=query) | Q(movieActors__icontains=query)  
+            # q10 = q1.difference(q2)
+            
+            
+            lookupWithMovieGenreOrMood = Q(movieGenres__icontains=query)|Q(movieMoods__icontains=query)
+            
 
-            results= AllMovies.objects.filter(lookups).distinct()
+            #the actual querySets are obtained here
+            #allResults = AllMovies.objects.filter(lookups).distinct()
+            resultsWithMovieDirector = AllMovies.objects.filter(Q(movieDirectors__icontains=query)).distinct()
+            resultsWithMovieActor = AllMovies.objects.filter(Q(movieActors__icontains=query)).distinct()
+            resultsWithMovieTitle = AllMovies.objects.filter(Q(movieTitle__icontains=query)).distinct()
+            resultsWithMovieGenreOrMood = AllMovies.objects.filter(lookupWithMovieGenreOrMood).distinct()
 
-            context={'results': results,
-                     'submitbutton': submitbutton}
+
+            context = {
+                'resultsWithMovieDirector': resultsWithMovieDirector,
+                'resultsWithMovieActor' : resultsWithMovieActor,
+                'resultsWithMovieTitle':resultsWithMovieTitle,
+                'resultsWithMovieGenreOrMood':resultsWithMovieGenreOrMood,
+                'submitbutton': submitbutton,
+                'query': query,
+            }
 
             return render(request, 'movies/searchResults.html', context)
 

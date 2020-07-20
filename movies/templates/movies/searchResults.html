@@ -5,47 +5,274 @@
 {% block content %}
 
 
-	<div class="row justify-content-center mt-3">
+	
 
-		{% for post in results %}
+<!-- searches based on movie titles -->
+<span>
+
+	{% if resultsWithMovieTitle|length > 0 %}
+
+		<div class="jumbotron">
+
+			<!-- Title -->
+			<div class="row mx-3 mb-2">
+				<h2 class="display-5 font-weight-bold">Movie Titles matching "{{query}}"</h2>
+			</div>
+
+
+			<!-- Yellow Line -->
+			<div class="row ml-1">
+				<div class="col-5 text-left"> 
+					<hr class="yellowSeparator">
+				</div>
+				<div class="col"></div>
+				<br><br>
+			</div>
+
+
+			<!-- Content -->
+			<div class="row justify-content-center">
+
+				{% for post in resultsWithMovieTitle %}
+				
+					<div class="card m-3 mb-3" style="width: 20rem;">
+
+						<div class="card text-center flex-column h-100">
+							<a href="/movie/{{post.id}}">
+								<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+							</a>
+							
+							<div class="card-body">
+								<h4>
+									<a class="card-title align-middle" href="/movie/{{post.id}}">{{post.movieTitle}}</a>
+								</h4>
 		
-			<div class="card m-3 mb-3" style="width: 20rem;">
+								<p class="card-text lead">{{post.releaseYear}}</p>
+							</div>
 
-				<div class="card text-center flex-column h-100">
-					<a href="/movie/{{post.id}}">
-						<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
-					</a>
-					
-					<div class="card-body">
-						<h4>
-							<a class="card-title align-middle" href="/movie/{{post.id}}">{{post.movieTitle}}</a>
-						</h4>
-
-						<p class="card-text lead">{{post.releaseYear}}</p>
 						</div>
 
+					</div>
+			
+				{% endfor %}
+
+
+			</div>
+
+			
+
+		</div>
+
+	{% endif %}
+
+</span>
+
+
+
+
+<!-- searches based on actors -->
+<span>
+
+	{% if resultsWithMovieActor|length > 0 %}
+
+		<div class="jumbotron">
+
+			<!-- Title -->
+			<div class="row mx-3 mb-2">
+				<h2 class="display-5 font-weight-bold">Movies with actors matching "{{query}}"</h2>
+			</div>
+
+
+			<!-- Yellow Line -->
+			<div class="row ml-1">
+				<div class="col-5 text-left"> 
+					<hr class="yellowSeparator">
 				</div>
-
-			</div>
-	
-
-
-
-			{% empty %}
-			<div>
+				<div class="col"></div>
 				<br><br>
-				<p class="lead">We haven't reviewed that one yet  ;)</p>
 			</div>
 
 
+			<!-- Content -->
+			<div class="row justify-content-center">
 
-		{% endfor %}
+				{% for post in resultsWithMovieActor %}
+				
+					<div class="card m-3 mb-3" style="width: 20rem;">
+
+						<div class="card text-center flex-column h-100">
+							<a href="/movie/{{post.id}}">
+								<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+							</a>
+							
+							<div class="card-body">
+								<h4>
+									<a class="card-title align-middle" href="/movie/{{post.id}}">{{post.movieTitle}}</a>
+								</h4>
+		
+								<p class="card-text lead">{{post.releaseYear}}</p>
+							</div>
+
+						</div>
+
+					</div>
+			
+				{% endfor %}
 
 
-	</div>
+			</div>
 
 
-	
+		</div>
+
+	{% endif %}
+
+</span>
+
+
+
+
+<!-- searches based on directors -->
+<span>
+
+	{% if resultsWithMovieDirector|length > 0 %}
+
+		<div class="jumbotron">
+
+			<!-- Title -->
+			<div class="row mx-3 mb-2">
+				<h2 class="display-5 font-weight-bold">Movies with directors matching "{{query}}"</h2>
+			</div>
+
+
+			<!-- Yellow Line -->
+			<div class="row ml-1">
+				<div class="col-5 text-left"> 
+					<hr class="yellowSeparator">
+				</div>
+				<div class="col"></div>
+				<br><br>
+			</div>
+
+
+			<!-- Content -->
+			<div class="row justify-content-center">
+
+				{% for post in resultsWithMovieDirector %}
+				
+					<div class="card m-3 mb-3" style="width: 20rem;">
+
+						<div class="card text-center flex-column h-100">
+							<a href="/movie/{{post.id}}">
+								<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+							</a>
+							
+							<div class="card-body">
+								<h4>
+									<a class="card-title align-middle" href="/movie/{{post.id}}">{{post.movieTitle}}</a>
+								</h4>
+		
+								<p class="card-text lead">{{post.releaseYear}}</p>
+							</div>
+
+						</div>
+
+					</div>
+			
+				{% endfor %}
+
+
+			</div>
+
+
+		</div>
+
+	{% endif %}
+
+</span>
+
+
+
+
+<!-- searches based on Genre or Mood -->
+<span>
+
+	{% if resultsWithMovieGenreOrMood|length > 0 %}
+
+		<div class="jumbotron">
+
+			<!-- Title -->
+			<div class="row mx-3 mb-2">
+				<h2 class="display-5 font-weight-bold">Movies tags containing "{{query}}"</h2>
+			</div>
+
+
+			<!-- Yellow Line -->
+			<div class="row ml-1">
+				<div class="col-5 text-left"> 
+					<hr class="yellowSeparator">
+				</div>
+				<div class="col"></div>
+				<br><br>
+			</div>
+
+
+			<!-- Content -->
+			<div class="row justify-content-center">
+
+				{% for post in resultsWithMovieGenreOrMood %}
+				
+					<div class="card m-3 mb-3" style="width: 20rem;">
+
+						<div class="card text-center flex-column h-100">
+							<a href="/movie/{{post.id}}">
+								<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
+							</a>
+							
+							<div class="card-body">
+								<h4>
+									<a class="card-title align-middle" href="/movie/{{post.id}}">{{post.movieTitle}}</a>
+								</h4>
+		
+								<p class="card-text lead">{{post.releaseYear}}</p>
+							</div>
+
+						</div>
+
+					</div>
+			
+				{% endfor %}
+
+
+			</div>
+
+
+		</div>
+
+	{% endif %}
+
+</span>
+
+
+
+
+<!-- message for no review-->
+{% if resultsWithMovieTitle|length == 0 %}
+	{% if resultsWithMovieActor|length == 0 %}
+		{% if resultsWithMovieDirector|length == 0 %}
+			{% if resultsWithMovieGenreOrMood|length == 0 %}
+				<div class="jumbotron">
+					<!-- Title -->
+					<div class="row mx-3 mb-2 justify-content-center">
+						<h4 class="display-5 font-weight-bold">We haven't reviewed that one yet ;)</h4>
+					</div>
+				</div>
+			{% endif %}
+		{% endif %}
+	{% endif %}
+{% endif %}
+
+
 
 {% endblock %}	
 
