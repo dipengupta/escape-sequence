@@ -393,7 +393,7 @@ def displayMoviesPage(request):
 
         #this line is to take only the last 'n' of those
         listOfMoviesWithFiveLikes = listOfMoviesWithFiveLikes[:3]
-        listOfMoviesWithThreeLikes = listOfMoviesWithThreeLikes[:5]
+        listOfMoviesWithThreeLikes = listOfMoviesWithThreeLikes[:3]
 
 
 
@@ -576,6 +576,78 @@ def displayAllMoviesWithThisMood(request, primKey):
 
 
     return render(request, 'movies/moviePages/allMoviesWithThisMood.html', masterDict)
+
+
+
+
+
+
+
+
+
+
+'''
+
+This is essentially the one-stop function to display all movies of the clicked rating
+
+Input: Primary key of the rating (from the URL, also refer Django-Notes for the complete dict)
+Returns: Dict of QuerySets with the relevent movie data, and title, with pagination
+
+'''
+def displayAllMoviesWithThisRating(request, primKey):
+
+    all_movies_data = None
+    page_title = "Rating"
+
+    try:
+        all_movies = AllMovies.objects.all().order_by('-id')
+            
+
+        # 1. All 5 of us liked this 
+        if primKey == "1":
+            
+            listOfMoviesWithFiveLikes = []
+
+            for movie in all_movies:
+                if movie.getOverallRating().get('totalLikes') == 5:
+                    listOfMoviesWithFiveLikes.append(movie)
+
+            all_movies_data = listOfMoviesWithFiveLikes
+            page_title = "Highest Rated"
+
+
+
+        # 2. Most of us liked this
+        if primKey == "2":
+            
+            listOfMoviesWithThreeLikes = []
+
+            for movie in all_movies:
+                if movie.getOverallRating().get('totalLikes') == 3:
+                    listOfMoviesWithThreeLikes.append(movie)
+
+            all_movies_data = listOfMoviesWithThreeLikes
+            page_title = "Most of us liked this"
+
+
+    except:
+        all_movies = None
+
+
+
+    paginator = Paginator(all_movies_data, 9) # Show 9 movies per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
+    masterDict = {
+        'page_obj': page_obj, 
+        'page_title' : page_title
+    }
+
+
+    return render(request, 'movies/moviePages/allMoviesWithThisRating.html', masterDict)
+
 
 
 

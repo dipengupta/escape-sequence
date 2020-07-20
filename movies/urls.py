@@ -13,6 +13,7 @@ urlpatterns = [
 	re_path(r'movies$', views.displayMoviesPage, name='movie-page'),
 	re_path(r'movies/genre/(?P<primKey>\d+)', views.displayAllMoviesWithThisGenre, name='movie-review-genre'),
 	re_path(r'movies/mood/(?P<primKey>\d+)', views.displayAllMoviesWithThisMood, name='movie-review-mood'),	
+	re_path(r'movies/rating/(?P<primKey>\d+)', views.displayAllMoviesWithThisRating, name='movie-review-rating'),	
 	re_path(r'test$', views.moviesFilter, name='movie-filter'),
 	re_path(r'ankur', views.displayPersonalPageAnkur, name='personal-ankur'),
 	re_path(r'dipen', views.displayPersonalPageDipen, name='personal-dipen'),

@@ -67,7 +67,9 @@
 
 
 
-	<!-- pagination -->
+    <!-- pagination, show this only if there is more than one page -->
+    
+    {% if page_obj.paginator.num_pages > 1 %}
 
 		<!-- this div is for all devices except small screen ones -->
 		<div class="text-center align-items-center mb-5 d-none d-md-none d-lg-block d-xl-block">
@@ -95,11 +97,12 @@
 				</div>
 
 		
-				<!-- Page x of y -->
-				<div class="col-4 my-auto">
-					<p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
-				</div>
-		
+                <!-- Page x of y-->
+                <div class="col-4 my-auto">
+                    <p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+                </div>
+
+                
 
 				<!-- Shortcut to next page and "Last Page" -->
 				<div class="col-4">
@@ -145,11 +148,11 @@
 				</div>
 
 		
-				<!-- Page x of y -->
-				<div class="col-4 my-auto">
-					<p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
-				</div>
-		
+                <!-- Page x of y -->
+                <div class="col-4 my-auto">
+                    <p>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</p>
+                </div>
+                
 
 				<!-- Shortcut to next page and "Last Page" -->
 				<div class="col">
@@ -169,6 +172,9 @@
 			</div>
 		</div>
 
+
+    {% endif %} 
+    
 	<!-- end of pagination -->
 
 </span>
