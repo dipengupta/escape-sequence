@@ -7,7 +7,7 @@ from movies.models import AllMovies, Dipen, Ankur, Shantnu, Ashesh, Jayant, Upco
 
 urlpatterns = [
 
-	re_path(r'^$', views.displayLandingPage, name='landing-page'),
+	re_path(r'^$', views.displayHomePage, name='home-page'),
 	re_path(r'home/', views.displayHomePage, name='home-page'),
 	re_path(r'movie/(?P<primKey>\d+)', views.displayAllReviewsForMovie, name='movie-review-page'),
 	re_path(r'movies$', views.displayMoviesPage, name='movie-page'),
