@@ -12,26 +12,26 @@
 			<div class="jumbotron d-none d-md-block d-lg-block d-xl-block">
 
 				<h2 class="display-4">Escape Sequence Movie Reviews</h2>
-			
+
 				<br><br>
-			
+
 				<h4>1 movie, 5 POVs</h4>
-			
-				<br> <br> 
-			
+
+				<br> <br>
+
 				<p class="lead">
-					<a href="/movies" style="color: #f2d517;">Click here to get started!</a> 
+					<a href="/movies" style="color: #f2d517;">Click here to get started!</a>
 					or search for any movie, actor, director in the search box!
 				</p>
-				
-			
-				<br> <br> 
-			
-				<p class="text-muted">
-					{Add better Landing Page Description} <br> <br>
-					Note: This is a pre-production developement website, and does not contain any actual reviews.
-				</p>
-			
+
+
+				<!--<br> <br> -->
+
+				<!--<p class="text-muted">-->
+				<!--	{Add better Landing Page Description} <br> <br>-->
+				<!--	Note: This is a pre-production developement website, and does not contain any actual reviews.-->
+				<!--</p>-->
+
 			</div>
 
 
@@ -39,30 +39,30 @@
 			<div class="jumbotron d-xs-block d-sm-block d-md-none">
 
 				<h2 class="display-4">Escape Sequence Movie Reviews</h2>
-			
+
 				<br><br>
-			
+
 				<h4>1 movie, 5 POVs</h4>
-			
-				<br> <br> 
-			
+
+				<br> <br>
+
 				<p class="lead">
-					<a href="/movies" style="color: #f2d517;">Click here to get started!</a> 
+					<a href="/movies" style="color: #f2d517;">Click here to get started!</a>
 					or search for any movie, actor, director in the search box!
 				</p>
-				
-			
-				<br> <br> 
-			
-				<p class="text-muted">
-					{Add better Landing Page Description} <br> <br>
-					Note: This is a pre-production developement website, and does not contain any actual reviews.
-				</p>
-			
+
+
+				<!--<br> <br> -->
+
+				<!--<p class="text-muted">-->
+				<!--	{Add better Landing Page Description} <br> <br>-->
+				<!--	Note: This is a pre-production developement website, and does not contain any actual reviews.-->
+				<!--</p>-->
+
 			</div>
 
 		<!-- End of Landing Text -->
-	
+
 
 
 
@@ -77,7 +77,7 @@
 
 			<!-- Yellow Line -->
 			<div class="row ml-1">
-				<div class="col-5 text-left"> 
+				<div class="col-5 text-left">
 					<hr class="yellowSeparator">
 				</div>
 				<div class="col"></div>
@@ -91,26 +91,26 @@
 				<div class="row justify-content-center">
 
 					{% for post in recently_reviewed %}
-					
+
 						<div class="card m-3 mb-3" style="width: 20rem;">
 
 							<div class="card text-center flex-column h-100">
 								<a href="/movie/{{post.id}}">
 									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
 								</a>
-								
+
 								<div class="card-body">
 									<h4>
 										<a class="card-title align-middle" href="/movie/{{post.id}}">{{post.movieTitle}}</a>
 									</h4>
-			
+
 									<p class="card-text lead">{{post.releaseYear}}</p>
 								</div>
 
 							</div>
 
 						</div>
-				
+
 					{% endfor %}
 
 
@@ -137,7 +137,7 @@
 
 			<!-- Yellow Line -->
 			<div class="row ml-1">
-				<div class="col-5 text-left"> 
+				<div class="col-5 text-left">
 					<hr class="yellowSeparator">
 				</div>
 				<div class="col"></div>
@@ -151,26 +151,26 @@
 				<div class="row justify-content-center">
 
 					{% for post in listOfMoviesWithFiveLikes %}
-					
+
 						<div class="card m-3 mb-3" style="width: 20rem;">
 
 							<div class="card text-center flex-column h-100">
 								<a href="/movie/{{post.id}}">
 									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
 								</a>
-								
+
 								<div class="card-body">
 									<h4>
 										<a class="card-title align-middle" href="/movie/{{post.id}}">{{post.movieTitle}}</a>
 									</h4>
-			
+
 									<p class="card-text lead">{{post.releaseYear}}</p>
 								</div>
 
 							</div>
 
 						</div>
-				
+
 					{% endfor %}
 
 
@@ -197,7 +197,7 @@
 
 			<!-- Yellow Line -->
 			<div class="row ml-1">
-				<div class="col-5 text-left"> 
+				<div class="col-5 text-left">
 					<hr class="yellowSeparator">
 				</div>
 				<div class="col"></div>
@@ -212,26 +212,26 @@
 				<div class="row justify-content-center">
 
 					{% for post in upcoming_reviews %}
-					
+
 						<div class="card m-3 mb-3" style="width: 20rem;">
 
 							<div class="card text-center flex-column h-100">
 								<!-- <a href="#"> -->
 									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
 								<!-- </a> -->
-								
+
 								<div class="card-body">
 									<h4>
 										<a class="card-title align-middle" style="color: white;">{{post.movieTitle}}</a>
 									</h4>
-			
+
 									<p class="card-text lead">{{post.releaseYear}}</p>
 								</div>
 
 							</div>
 
 						</div>
-				
+
 					{% endfor %}
 
 
@@ -251,6 +251,6 @@
 	</span>
 
 
-{% endblock %}	
+{% endblock %}
 
 
