@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '0clv-0i8^qszc&#6$yzie+=t7c$h*o&ken+7$r(ys*+wdlq9u+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['dipengupta.pythonanywhere.com','127.0.0.1']
+ALLOWED_HOSTS = ['escapesequence.pythonanywhere.com']
 
 
 # Application definition
@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'mysite7.wsgi.application'
 DATABASES = {
 'default': {
     'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'dipengupta$es',
-    'USER': 'dipengupta',
-    'PASSWORD': 'makeSiteFaster',
-    'HOST': 'dipengupta.mysql.pythonanywhere-services.com',
+    'NAME': 'escapesequence$es',
+    'USER': 'escapesequence',
+    'PASSWORD': 'ProdData@123',
+    'HOST': 'escapesequence.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -128,7 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/dipengupta/es-test/static'
+STATIC_ROOT = '/home/escapesequence/escape-sequence/static'
 
 # Media files {These just include the photos for the movies}
 
