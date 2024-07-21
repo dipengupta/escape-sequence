@@ -78,7 +78,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Determine if the environment is local or production
 ENVIRONMENT = os.getenv('DJANGO_ENV', 'local')
 
-if ENVIRONMENT == 'production':
+if ENVIRONMENT == 'local':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -88,13 +95,9 @@ if ENVIRONMENT == 'production':
             'HOST': 'dipengupta.mysql.pythonanywhere-services.com',
         }
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+
+
+
 
 
 # DATABASES = {
