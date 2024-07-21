@@ -89,7 +89,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'dipengupta$es',
+            'NAME': 'dipengupta$prod',
             'USER': 'dipengupta',
             'PASSWORD': 'makeSiteFaster',
             'HOST': 'dipengupta.mysql.pythonanywhere-services.com',

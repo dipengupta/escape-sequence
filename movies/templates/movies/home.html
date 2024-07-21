@@ -25,12 +25,12 @@
 				</p>
 				
 			
-				<br> <br> 
-			
-				<p class="text-muted">
-					{Add better Landing Page Description} <br> <br>
-					Note: This is a pre-production developement website, and does not contain any actual reviews.
-				</p>
+{#				<br> <br> #}
+{#			#}
+{#				<p class="text-muted">#}
+{#					{Add better Landing Page Description} <br> <br>#}
+{#					Note: This is a pre-production developement website, and does not contain any actual reviews.#}
+{#				</p>#}
 			
 			</div>
 
@@ -127,125 +127,125 @@
 
 
 		<!-- This is the part for "LiiT Movies" -->
-		<div class="jumbotron">
-
-			<!-- Title -->
-			<div class="row mx-3 mb-2">
-				<h2 class="display-5 font-weight-bold">LiiT Movies</h2>
-			</div>
-
-
-			<!-- Yellow Line -->
-			<div class="row ml-1">
-				<div class="col-5 text-left"> 
-					<hr class="yellowSeparator">
-				</div>
-				<div class="col"></div>
-				<br><br>
-			</div>
-
-
-			<!-- Content -->
-			{% if listOfMoviesWithFiveLikes != None %}
-
-				<div class="row justify-content-center">
-
-					{% for post in listOfMoviesWithFiveLikes %}
-					
-						<div class="card m-3 mb-3" style="width: 20rem;">
-
-							<div class="card text-center flex-column h-100">
-								<a href="/movie/{{post.id}}">
-									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
-								</a>
-								
-								<div class="card-body">
-									<h4>
-										<a class="card-title align-middle" href="/movie/{{post.id}}">{{post.movieTitle}}</a>
-									</h4>
-			
-									<p class="card-text lead">{{post.releaseYear}}</p>
-								</div>
-
-							</div>
-
-						</div>
-				
-					{% endfor %}
-
-
-				</div>
-
-
-
-				{% else %}
-				<p class="lead">Oops! Something went wrong!</p>
-
-			{% endif %}
-
-		</div>
-
+{#		<div class="jumbotron">#}
+{##}
+{#			<!-- Title -->#}
+{#			<div class="row mx-3 mb-2">#}
+{#				<h2 class="display-5 font-weight-bold">LiiT Movies</h2>#}
+{#			</div>#}
+{##}
+{##}
+{#			<!-- Yellow Line -->#}
+{#			<div class="row ml-1">#}
+{#				<div class="col-5 text-left"> #}
+{#					<hr class="yellowSeparator">#}
+{#				</div>#}
+{#				<div class="col"></div>#}
+{#				<br><br>#}
+{#			</div>#}
+{##}
+{##}
+{#			<!-- Content -->#}
+{#			{% if listOfMoviesWithFiveLikes != None %}#}
+{##}
+{#				<div class="row justify-content-center">#}
+{##}
+{#					{% for post in listOfMoviesWithFiveLikes %}#}
+{#					#}
+{#						<div class="card m-3 mb-3" style="width: 20rem;">#}
+{##}
+{#							<div class="card text-center flex-column h-100">#}
+{#								<a href="/movie/{{post.id}}">#}
+{#									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">#}
+{#								</a>#}
+{#								#}
+{#								<div class="card-body">#}
+{#									<h4>#}
+{#										<a class="card-title align-middle" href="/movie/{{post.id}}">{{post.movieTitle}}</a>#}
+{#									</h4>#}
+{#			#}
+{#									<p class="card-text lead">{{post.releaseYear}}</p>#}
+{#								</div>#}
+{##}
+{#							</div>#}
+{##}
+{#						</div>#}
+{#				#}
+{#					{% endfor %}#}
+{##}
+{##}
+{#				</div>#}
+{##}
+{##}
+{##}
+{#				{% else %}#}
+{#				<p class="lead">Oops! Something went wrong!</p>#}
+{##}
+{#			{% endif %}#}
+{##}
+{#		</div>#}
+{##}
 
 		<!-- This is the part for upcoming reviews -->
-		<div class="jumbotron">
-
-			<!-- Title -->
-			<div class="row mx-3 mb-2">
-				<h2 class="display-5 font-weight-bold">Upcoming Reviews</h2>
-			</div>
-
-
-			<!-- Yellow Line -->
-			<div class="row ml-1">
-				<div class="col-5 text-left"> 
-					<hr class="yellowSeparator">
-				</div>
-				<div class="col"></div>
-				<br><br>
-			</div>
-
-
-			<!-- Content -->
-
-			{% if upcoming_reviews != None %}
-
-				<div class="row justify-content-center">
-
-					{% for post in upcoming_reviews %}
-					
-						<div class="card m-3 mb-3" style="width: 20rem;">
-
-							<div class="card text-center flex-column h-100">
-								<!-- <a href="#"> -->
-									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">
-								<!-- </a> -->
-								
-								<div class="card-body">
-									<h4>
-										<a class="card-title align-middle" style="color: white;">{{post.movieTitle}}</a>
-									</h4>
-			
-									<p class="card-text lead">{{post.releaseYear}}</p>
-								</div>
-
-							</div>
-
-						</div>
-				
-					{% endfor %}
-
-
-				</div>
-
-
-				{% else %}
-				<p class="lead">Oops! Something went wrong!</p>
-
-			{% endif %}
-
-
-		</div>
-
+{#		<div class="jumbotron">#}
+{##}
+{#			<!-- Title -->#}
+{#			<div class="row mx-3 mb-2">#}
+{#				<h2 class="display-5 font-weight-bold">Upcoming Reviews</h2>#}
+{#			</div>#}
+{##}
+{##}
+{#			<!-- Yellow Line -->#}
+{#			<div class="row ml-1">#}
+{#				<div class="col-5 text-left"> #}
+{#					<hr class="yellowSeparator">#}
+{#				</div>#}
+{#				<div class="col"></div>#}
+{#				<br><br>#}
+{#			</div>#}
+{##}
+{##}
+{#			<!-- Content -->#}
+{##}
+{#			{% if upcoming_reviews != None %}#}
+{##}
+{#				<div class="row justify-content-center">#}
+{##}
+{#					{% for post in upcoming_reviews %}#}
+{#					#}
+{#						<div class="card m-3 mb-3" style="width: 20rem;">#}
+{##}
+{#							<div class="card text-center flex-column h-100">#}
+{#								<!-- <a href="#"> -->#}
+{#									<img class="card-img-top img-fluid img-responsive" src="{{post.moviePoster.url}}" alt="{{post.moviePoster.url}}">#}
+{#								<!-- </a> -->#}
+{#								#}
+{#								<div class="card-body">#}
+{#									<h4>#}
+{#										<a class="card-title align-middle" style="color: white;">{{post.movieTitle}}</a>#}
+{#									</h4>#}
+{#			#}
+{#									<p class="card-text lead">{{post.releaseYear}}</p>#}
+{#								</div>#}
+{##}
+{#							</div>#}
+{##}
+{#						</div>#}
+{#				#}
+{#					{% endfor %}#}
+{##}
+{##}
+{#				</div>#}
+{##}
+{##}
+{#				{% else %}#}
+{#				<p class="lead">Oops! Something went wrong!</p>#}
+{##}
+{#			{% endif %}#}
+{##}
+{##}
+{#		</div>#}
+{##}
 
 
 	</span>
