@@ -75,26 +75,24 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 
-# Determine if the environment is local or production
-ENVIRONMENT = os.getenv('DJANGO_ENV', 'local')
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'dipengupta$prod',
+#         'USER': 'dipengupta',
+#         'PASSWORD': 'makeSiteFaster',
+#         'HOST': 'dipengupta.mysql.pythonanywhere-services.com',
+#     }
+# }
 
-if ENVIRONMENT == 'local':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'dipengupta$prod',
-            'USER': 'dipengupta',
-            'PASSWORD': 'makeSiteFaster',
-            'HOST': 'dipengupta.mysql.pythonanywhere-services.com',
-        }
-    }
+}
+
+
 
 
 
