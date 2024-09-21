@@ -3,6 +3,9 @@ from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
 import os
 
+from django.core.files.base import ContentFile
+from PIL import Image
+import io
 
 '''
 The following follows a simple one-to-many DB scheme
@@ -75,14 +78,56 @@ class AllMovies(models.Model):
     movieDirectors = models.TextField(blank=True)
     movieActors = models.TextField(blank=True)
 
+    # def save(self, *args, **kwargs):
+    #     # Save the instance first to ensure the primary key is set
+    #     if not self.pk:
+    #         super().save(*args, **kwargs)
+    #     # Update the file name with the primary key
+    #     self.moviePoster.name = upload_to(self, self.moviePoster.name)
+    #     # Save the instance again to apply the new file name
+    #     super().save(*args, **kwargs)
+
+
     def save(self, *args, **kwargs):
-        # Save the instance first to ensure the primary key is set
         if not self.pk:
             super().save(*args, **kwargs)
-        # Update the file name with the primary key
+        
+        if self.moviePoster:
+            self.resize_image()
+        
         self.moviePoster.name = upload_to(self, self.moviePoster.name)
-        # Save the instance again to apply the new file name
         super().save(*args, **kwargs)
+
+    def resize_image(self):
+        img = Image.open(self.moviePoster)
+        target_size = (600, 900)
+        
+        # Calculate the aspect ratio
+        aspect_ratio = img.width / img.height
+        target_ratio = target_size[0] / target_size[1]
+
+        if aspect_ratio > target_ratio:
+            # Image is wider, scale based on width
+            new_size = (target_size[0], int(target_size[0] / aspect_ratio))
+        else:
+            # Image is taller, scale based on height
+            new_size = (int(target_size[1] * aspect_ratio), target_size[1])
+
+        # Resize the image, upscaling if necessary
+        img = img.resize(new_size, Image.LANCZOS)
+
+        # If the image is smaller than the target, create a new image with padding
+        if new_size[0] < target_size[0] or new_size[1] < target_size[1]:
+            background = Image.new('RGB', target_size, (0, 0, 0))  # Black background
+            offset = ((target_size[0] - new_size[0]) // 2, (target_size[1] - new_size[1]) // 2)
+            background.paste(img, offset)
+            img = background
+
+        img_io = io.BytesIO()
+        img.save(img_io, format='JPEG', quality=85)
+        self.moviePoster.save(self.moviePoster.name, ContentFile(img_io.getvalue()), save=False)
+
+
 
     def __str__(self):
         return self.movieTitle
