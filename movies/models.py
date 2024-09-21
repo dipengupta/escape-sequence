@@ -88,37 +88,52 @@ class AllMovies(models.Model):
     #     super().save(*args, **kwargs)
 
 
+
     def save(self, *args, **kwargs):
-        if not self.pk:
-            super().save(*args, **kwargs)
-        
+        is_new = self.pk is None
+        old_poster = None
+
+        if not is_new:
+            old_instance = AllMovies.objects.get(pk=self.pk)
+            if old_instance.moviePoster != self.moviePoster:
+                old_poster = old_instance.moviePoster
+
+        super().save(*args, **kwargs)
+
         if self.moviePoster:
             self.resize_image()
-        
-        self.moviePoster.name = upload_to(self, self.moviePoster.name)
-        super().save(*args, **kwargs)
+
+            if old_poster:
+                if os.path.isfile(old_poster.path):
+                    os.remove(old_poster.path)
+
+            new_name = upload_to(self, self.moviePoster.name)
+            if self.moviePoster.name != new_name:
+                old_path = self.moviePoster.path
+                new_path = os.path.join(self.moviePoster.storage.location, new_name)
+                os.rename(old_path, new_path)
+                self.moviePoster.name = new_name
+
+        if is_new or old_poster:
+            super().save(update_fields=['moviePoster'])
+
 
     def resize_image(self):
         img = Image.open(self.moviePoster)
         target_size = (600, 900)
         
-        # Calculate the aspect ratio
         aspect_ratio = img.width / img.height
         target_ratio = target_size[0] / target_size[1]
 
         if aspect_ratio > target_ratio:
-            # Image is wider, scale based on width
             new_size = (target_size[0], int(target_size[0] / aspect_ratio))
         else:
-            # Image is taller, scale based on height
             new_size = (int(target_size[1] * aspect_ratio), target_size[1])
 
-        # Resize the image, upscaling if necessary
         img = img.resize(new_size, Image.LANCZOS)
 
-        # If the image is smaller than the target, create a new image with padding
         if new_size[0] < target_size[0] or new_size[1] < target_size[1]:
-            background = Image.new('RGB', target_size, (0, 0, 0))  # Black background
+            background = Image.new('RGB', target_size, (0, 0, 0))
             offset = ((target_size[0] - new_size[0]) // 2, (target_size[1] - new_size[1]) // 2)
             background.paste(img, offset)
             img = background
@@ -126,6 +141,7 @@ class AllMovies(models.Model):
         img_io = io.BytesIO()
         img.save(img_io, format='JPEG', quality=85)
         self.moviePoster.save(self.moviePoster.name, ContentFile(img_io.getvalue()), save=False)
+
 
 
 
